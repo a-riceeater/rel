@@ -1,9 +1,8 @@
-const fs = require('fs');
 const interper = require('./interp');
-const handlers = require("./handlers")
-
-const path = require("path")
-const startDate = new Date();
+const handlers = require("./handlers");
+const requires = require("./requires");
+const path = requires.path;
+const fs = requires.fs;
 
 fs.readFile("./rel.json", (err, data) => {
     if (err) throw err;
@@ -11,17 +10,16 @@ fs.readFile("./rel.json", (err, data) => {
     const rel = JSON.parse(data)
     const file = rel.main;
     if (fs.existsSync(file)) {
-      interp.interp(file)
-        .then((data) => {
+      interper.interp(file)
+        .then(() => {
           handlers.wl("-- Instance Finished -- ")
       }) 
     }
     else {
       const rel = JSON.parse(data)
-      const FgRed = "\x1b[31m"
 
-      console.log(FgRed + "ERROR: Program exited with exit status 0:");
+      console.log(requires.FgRed + "ERROR: Program exited with exit status 0:");
       console.log("   " + path.join(__dirname, rel.main))
-      console.log("File not found!");
+      console.log("ENODENT: no such file or directory");
     }
 })
