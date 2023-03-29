@@ -18,9 +18,11 @@ Documentation may come later.
 
 ## Example Code
 
-```using <Application>
+```
+using <Application>
 using <Logger>
 
 public main () {
     Logger.printl("Hello, World")
-}(main);```
+}(main);
+```
