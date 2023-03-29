@@ -17,7 +17,7 @@ async function interp(file) {
         const line = flines[i].replaceAll("\r", "").trim();
 
     
-        if (line.includes("using <")) manager.use(line.split(" ")[1]);
+        if (line.includes("using <")) manager.use(line.split(" ")[1], i, file);
 
     }
 

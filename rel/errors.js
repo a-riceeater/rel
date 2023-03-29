@@ -43,10 +43,17 @@ function throwError(error, line) {
 
 }
 
+function throwModuleNotFound(mname, line, filename) {
+    console.log(FgRed + "ERROR: Program exited with exit status 0:");
+    console.log("   " + filename + ":" + line.split(":")[1])
+    console.log("   Module", mname, "was not found!");
+    console.log("   At: ");
+    console.log("   ", filename + ":" + line.split(":")[1], Reset);
+    process.exit()
+}
+
 function hasError() {
     return error;
 }
 
-module.exports = { throwTypeError, hasError }
-
-throwTypeError("a", "2:3", "h")
+module.exports = { throwTypeError, hasError, throwModuleNotFound }
