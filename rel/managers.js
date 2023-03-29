@@ -5,4 +5,8 @@ function use(args, line, file) {
     modules.adduse(requirement, line, file);
 }
 
-module.exports = { use }
+function checkForEnd(fname, d) {
+    return d.includes(`}(${fname})`);
+}
+
+module.exports = { use, checkForEnd }

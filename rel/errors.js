@@ -43,12 +43,26 @@ function throwError(error, line) {
 
 }
 
+function throwMainNotFound(main, filename) {
+    console.log(FgRed + "ERROR: Program exited with exit status 0:");
+    console.log("   File", path.join(__dirname, "../" + filename), "did not contain public '" + main + "'", Reset);
+    process.exit()
+}
+
 function throwModuleNotFound(mname, line, filename) {
     console.log(FgRed + "ERROR: Program exited with exit status 0:");
-    console.log("   " + filename + ":" + line.split(":")[1])
+    console.log("   " + filename + ":" + line)
     console.log("   Module", mname, "was not found!");
     console.log("   At: ");
-    console.log("   ", filename + ":" + line.split(":")[1], Reset);
+    console.log("   ", path.join(__dirname, "../" + filename) + ":" + line, Reset);
+    process.exit()
+}
+
+function throwUED(fname, file) {
+    console.log(FgRed + "ERROR: Program exited with exit status 3:");
+    console.log("   Unexpected end of input at function: " + fname);
+    console.log("   At: ");
+    console.log("   ", path.join(__dirname, "../" + file), Reset);
     process.exit()
 }
 
@@ -56,4 +70,4 @@ function hasError() {
     return error;
 }
 
-module.exports = { throwTypeError, hasError, throwModuleNotFound }
+module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED }
