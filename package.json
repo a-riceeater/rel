@@ -1,0 +1,17 @@
+{
+    "name": "routinglanguage",
+    "version": "1.0.0",
+    "description": "",
+    "main": "il/errors.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "glob": "^9.2.1",
+      "node-fetch": "^3.3.0"
+    }
+  }
+  

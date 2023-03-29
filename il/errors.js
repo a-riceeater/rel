@@ -1,0 +1,52 @@
+const fs = require("fs")
+const path = require("path")
+
+// eval(fs.readFileSync(path.join(__dirname, "./colors.js"), "utf-8"))
+
+const Reset = "\x1b[0m"
+const Bright = "\x1b[1m"
+const Dim = "\x1b[2m"
+const Underscore = "\x1b[4m"
+const Blink = "\x1b[5m"
+const Reverse = "\x1b[7m"
+const Hidden = "\x1b[8m"
+
+const FgBlack = "\x1b[30m"
+const FgRed = "\x1b[31m"
+const FgGreen = "\x1b[32m"
+const FgYellow = "\x1b[33m"
+const FgBlue = "\x1b[34m"
+const FgMagenta = "\x1b[35m"
+const FgCyan = "\x1b[36m"
+const FgWhite = "\x1b[37m"
+const FgGray = "\x1b[90m"
+
+const BgBlack = "\x1b[40m"
+const BgRed = "\x1b[41m"
+const BgGreen = "\x1b[42m"
+const BgYellow = "\x1b[43m"
+const BgBlue = "\x1b[44m"
+const BgMagenta = "\x1b[45m"
+const BgCyan = "\x1b[46m"
+const BgWhite = "\x1b[47m"
+const BgGray = "\x1b[100m"
+
+function throwTypeError(error, line, filename) {
+    console.log(FgRed + "ERROR: Program exited with exit status 1:");
+    console.log("   " + filename + ":" + line.split(":")[1])
+    console.log("   ", error, "is not defined");
+    console.log("   At: ");
+    console.log("   ", filename + ":" + line.split(":")[1], Reset);
+}
+
+function throwError(error, line) {
+
+}
+
+function hasError() {
+    return error;
+}
+
+module.exports = { throwTypeError, hasError }
+
+throwTypeError("a", "2:3", "h")
