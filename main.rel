@@ -2,5 +2,5 @@ using <Application>
 using <Logger>
 
 public main () {
-    Logger.log("Hello, world")
+    Logger.printl("Hello, World")
 }(main);
