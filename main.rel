@@ -1,0 +1,6 @@
+using <Application>
+using <Logger>
+
+public main () {
+    Logger.log("Hello, world")
+}(main);
