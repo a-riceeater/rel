@@ -4,6 +4,7 @@ const path = requires.path;
 const manager = requires.manager;
 const errors = require("./errors");
 const handlers = require("./handlers");
+const variables = require("./variables")
 
 async function interp(file) {
     const fd = fs.readFileSync(file, "utf8")

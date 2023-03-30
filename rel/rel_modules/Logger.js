@@ -13,7 +13,7 @@ function println(message) {
 const prompt = require('prompt-sync')();
 function inputRead(message) {
     // handle this later
-    prompt(message);
+    prompt(manager.isVariable(message) ? message : message.substring(1, message.length - 1));
 }
 
 module.exports = { println, inputRead }
