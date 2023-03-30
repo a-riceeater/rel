@@ -27,6 +27,6 @@ using <Application>
 using <Logger>
 
 public main () {
-    Logger.printl("Hello, World")
+    Logger.println("Hello, World")
 }(main);
 ```
