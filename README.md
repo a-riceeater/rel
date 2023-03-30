@@ -15,6 +15,10 @@ Syntax based on java and c#.
 
 Documentation may come later.
 
+## Features coming soon
+
+- A module which allows you to create an express server to route files, etc.
+
 
 ## Example Code
 
