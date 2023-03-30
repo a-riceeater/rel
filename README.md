@@ -36,4 +36,4 @@ public main () {
 ```
 
 # Documentation
-Documentation begins (here)[https://github.com/ghwosty/rel/blob/main/documentation/start.md]
+Documentation begins [here](https://github.com/ghwosty/rel/blob/main/documentation/start.md)
