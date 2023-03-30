@@ -2,5 +2,5 @@ using <Application>
 using <Logger>
 
 public main() {
-    Logger.inputRead("Hello. What is your name?")
+    Logger.println("Hello, World uwu")
 }(main)

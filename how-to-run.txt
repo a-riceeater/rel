@@ -1,0 +1,7 @@
+1.
+Execute the run.bat
+(either open the file, or type ./run in the terminal)
+
+or
+
+2. type node rel\rel in the console.
