@@ -8,3 +8,6 @@ The quickstart guide to programming in rel.
 2. Configure your personal settings in `rel.json`
 3. Change/create a `.rel` file (and link it to `rel.json`)
 4. Begin programming in your file.
+
+
+[next](https://github.com/ghwosty/rel/blob/main/documentation/syntax.md)
