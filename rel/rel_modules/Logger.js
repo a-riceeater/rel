@@ -9,4 +9,8 @@ function println(message) {
     return true;
 }
 
+function inputRead() {
+    // handle this later
+}
+
 module.exports = { println }
