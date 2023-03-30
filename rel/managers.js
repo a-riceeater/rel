@@ -1,7 +1,7 @@
 const modules = require("./modules")
 
 function use(args, line, file) {
-    const requirement = args.replaceAll("<", "").replaceAll(">", "");
+    const requirement = args;
     modules.adduse(requirement, line, file);
 }
 

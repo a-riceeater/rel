@@ -52,7 +52,7 @@ function throwMainNotFound(main, filename) {
 function throwModuleNotFound(mname, line, filename) {
     console.log(FgRed + "ERROR: Program exited with exit status 0:");
     console.log("   " + filename + ":" + line)
-    console.log("   Module", mname, "was not found!");
+    console.log("   Module", mname, "is undefined.");
     console.log("   At: ");
     console.log("   ", path.join(__dirname, "../" + filename) + ":" + line, Reset);
     process.exit()
