@@ -34,3 +34,6 @@ public main () {
     Logger.println("Hello, World")
 }(main);
 ```
+
+# Documentation
+Documentation begins !(here)[https://github.com/ghwosty/rel/blob/main/documentation/start.md]
