@@ -20,7 +20,7 @@ Documentation may come later.
 
 - A module which allows you to create an express server to route files, etc.
 - Functions
-- Variables
+- Including variables and string in the same function
 - etc
 
 
