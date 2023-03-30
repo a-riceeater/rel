@@ -2,5 +2,6 @@
     "name": "my cool project",
     "version": "1.0.0",
     "main": "main.rel",
-    "author": "ghwosty"
+    "author": "ghwosty",
+    "showExit": false
 }

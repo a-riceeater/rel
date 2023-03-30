@@ -1,6 +1,7 @@
 const modules = require("./modules")
 const FgRed = "\x1b[31m"
 const Reset = "\x1b[0m"
+const variables = require("./variables")
 
 function use(args, line, file) {
     const requirement = args;
@@ -34,7 +35,11 @@ function handleFunction(line, fline, fname) {
         return
     };
 
-    eval(modules.ms[obj][method](line.split("(")[1].replace(")", "")))
+    if (isVariable(line.split("(")[1].replace(")", ""))) {
+        modules.ms[obj][method](variables.getVariable(line.split("(")[1].replace(")", "")))
+    } else {
+        modules.ms[obj][method](line.split("(")[1].replace(")", ""))
+    }
 
     return true;
 }

@@ -4,9 +4,12 @@ const modules = require("./modules")
 const Reset = "\x1b[0m"
 const FgRed = "\x1b[31m"
 
-function putVariable(name, value, fname, fline) {
-    if (manager.isVariable(value)) {
-        console.log(value)
+function isVariable(d) {
+    return !d.startsWith("\"") && !d.endsWith("\"")
+}
+
+async function putVariable(name, value, fname, fline) {
+    if (isVariable(value)) {
         const obj = value.substring(0, value.indexOf("."));
         const method = value.split(".")[1].replace(value.split("(")[1], "").replace("(", "");
 
@@ -29,14 +32,15 @@ function putVariable(name, value, fname, fline) {
             return
         };
 
-        eval(modules.ms[obj][method](value.split("(")[1].replace(")", "")))
+        const response = modules.ms[obj][method](value.split("(")[1].replace(")", ""))
+        variables[name] = response.toString();
     } else {
         variables[name] = value;
     }
 }
 
 function getVariable(name) {
-
+    return variables[name];
 }
 
 module.exports = { variables, putVariable, getVariable };
