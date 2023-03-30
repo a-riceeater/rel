@@ -1,6 +1,8 @@
 using <Application>
-using Logger
+using <Logger>
 
 public main () {
     Logger.println("Hello, World")
 }(main);
+
+# lol

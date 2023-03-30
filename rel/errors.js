@@ -33,10 +33,10 @@ const BgGray = "\x1b[100m"
 
 function throwTypeError(error, line, filename) {
     console.log(FgRed + "ERROR: Program exited with exit status 1:");
-    console.log("   " + filename + ":" + line.split(":")[1])
+    console.log("   " + filename + ":" + line)
     console.log("   ", error, "is not defined");
     console.log("   At: ");
-    console.log("   ", filename + ":" + line.split(":")[1], Reset);
+    console.log("   ", filename + ":" + line, Reset);
 }
 
 function throwError(error, line) {

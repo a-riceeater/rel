@@ -20,10 +20,19 @@ async function interp(file) {
     for (let i = 0; i < flines.length; i++) {
         const line = flines[i].replaceAll("\r", "").trim();
 
-    
-        if (line.i("using ")) manager.use(line.split(" ")[1], i, file);
+        if (line == "") continue; 
 
-        if (line.i(".")) manager.handleFunction(line, i, file);
+        if (line.startsWith("#") || line.startsWith("//")) continue; // comments
+
+        if (line.includes("public " + file.replace(/\.[^/.]+$/, ""))) continue;
+    
+        if (line.i("using ")) { manager.use(line.split(" ")[1], i, file); continue }
+
+        if (line.i(".")) { manager.handleFunction(line, i, file); continue; }
+        
+        if (line.includes("}(") || line.includes("} (")) continue; // switch to handle function ends later
+
+        else errors.throwTypeError(line, i, file)
     }
 
     return true;
