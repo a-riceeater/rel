@@ -2,5 +2,10 @@ using <Application>
 using <Logger>
 
 public main() {
-    Logger.println("Hello, World uwu")
+    //define name = Logger.inputRead("Name? ")
+    //Logger.println("Hello,")
+    # Logger.println(name)
+
+    define a = "abc"
+    Logger.println(a)
 }(main)

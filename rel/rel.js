@@ -13,7 +13,7 @@ fs.readFile("./rel.json", (err, data) => {
       interper.interp(file)
         .then(() => {
           handlers.wl("-- Instance Finished -- ")
-          console.log("Program exited with status code 0.")
+          if (rel.showExit) console.log("Program exited with status code 0.")
       }) 
     }
     else {

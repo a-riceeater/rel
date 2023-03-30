@@ -229,6 +229,102 @@
 [8:07] -- New Instance Started -- 
 [8:07] Main function found
 [8:07] -- Instance Finished -- 
-[8:12] -- New Instance Started -- 
-[8:12] Main function found
-[8:12] -- Instance Finished -- 
+[15:50] -- New Instance Started -- 
+[15:50] Main function found
+[15:50] -- Instance Finished -- 
+[15:50] -- New Instance Started -- 
+[15:50] Main function found
+[15:50] -- Instance Finished -- 
+[15:58] -- New Instance Started -- 
+[15:58] Main function found
+[15:58] -- Instance Finished -- 
+[16:00] -- New Instance Started -- 
+[16:00] Main function found
+[16:00] -- Instance Finished -- 
+[16:01] -- New Instance Started -- 
+[16:01] Main function found
+[16:01] -- Instance Finished -- 
+[16:01] -- New Instance Started -- 
+[16:01] Main function found
+[16:01] -- Instance Finished -- 
+[17:18] -- New Instance Started -- 
+[17:18] Main function found
+[17:18] -- Instance Finished -- 
+[18:12] -- New Instance Started -- 
+[18:12] Main function found
+[18:12] -- Instance Finished -- 
+[18:24] -- New Instance Started -- 
+[18:24] Main function found
+[18:24] -- Instance Finished -- 
+[18:25] -- New Instance Started -- 
+[18:25] Main function found
+[18:25] -- Instance Finished -- 
+[18:25] -- New Instance Started -- 
+[18:25] Main function found
+[18:25] -- Instance Finished -- 
+[18:25] -- New Instance Started -- 
+[18:25] Main function found
+[18:25] -- Instance Finished -- 
+[18:29] -- New Instance Started -- 
+[18:29] Main function found
+[18:29] -- Instance Finished -- 
+[18:30] -- New Instance Started -- 
+[18:30] -- Instance Finished -- 
+[18:30] Main function found
+[18:31] -- New Instance Started -- 
+[18:31] Main function found
+[18:31] -- Instance Finished -- 
+[18:31] -- New Instance Started -- 
+[18:31] Main function found
+[18:31] -- Instance Finished -- 
+[18:31] -- New Instance Started -- 
+[18:31] Main function found
+[18:31] -- Instance Finished -- 
+[20:24] -- New Instance Started -- 
+[20:24] Main function found
+[20:24] -- Instance Finished -- 
+[20:24] -- New Instance Started -- 
+[20:24] Main function found
+[20:24] -- Instance Finished -- 
+[20:24] -- New Instance Started -- 
+[20:24] Main function found
+[20:24] -- Instance Finished -- 
+[20:25] -- New Instance Started -- 
+[20:25] Main function found
+[20:25] -- Instance Finished -- 
+[20:25] -- New Instance Started -- 
+[20:25] Main function found
+[20:25] -- Instance Finished -- 
+[20:28] -- New Instance Started -- 
+[20:28] Main function found
+[20:28] -- Instance Finished -- 
+[20:31] -- New Instance Started -- 
+[20:31] Main function found
+[20:31] -- Instance Finished -- 
+[20:32] -- New Instance Started -- 
+[20:32] Main function found
+[20:32] -- Instance Finished -- 
+[20:32] -- New Instance Started -- 
+[20:32] Main function found
+[20:32] -- Instance Finished -- 
+[20:33] -- New Instance Started -- 
+[20:33] Main function found
+[20:33] -- Instance Finished -- 
+[21:50] -- New Instance Started -- 
+[21:50] Main function found
+[21:50] -- Instance Finished -- 
+[21:50] -- New Instance Started -- 
+[21:50] Main function found
+[21:50] -- Instance Finished -- 
+[21:50] -- New Instance Started -- 
+[21:50] Main function found
+[21:50] -- Instance Finished -- 
+[21:51] -- New Instance Started -- 
+[21:51] Main function found
+[21:51] -- Instance Finished -- 
+[21:52] -- New Instance Started -- 
+[21:52] Main function found
+[21:52] -- Instance Finished -- 
+[21:52] -- New Instance Started -- 
+[21:52] Main function found
+[21:52] -- Instance Finished -- 
