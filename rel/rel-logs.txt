@@ -66,3 +66,7 @@
 [16:56] -- Instance Finished -- 
 [17:01] -- New Instance Started -- 
 [17:02] -- New Instance Started -- 
+[17:02] -- New Instance Started -- 
+[17:03] -- New Instance Started -- 
+[17:03] Main function found
+[17:03] -- Instance Finished -- 
