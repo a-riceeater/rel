@@ -32,3 +32,9 @@ Comments in rel can be stated in two ways.
 All the code after the comment symbols will not be read by the interperter.
 
 Comments cannot be placed on the same line after any function is declared.
+
+## Semicolons
+
+Semicolons are not used in rel. They are not required.
+
+If one trys to use a semicolon, a syntax error will be thrown.
