@@ -5,4 +5,4 @@ public main () {
     Logger.println("Hello, World")
 }(main);
 
-# lol
+abc

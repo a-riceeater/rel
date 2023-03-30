@@ -32,7 +32,7 @@ const BgWhite = "\x1b[47m"
 const BgGray = "\x1b[100m"
 
 function throwTypeError(error, line, filename) {
-    console.log(FgRed + "ERROR: Program exited with exit status 1:");
+    console.log(FgRed + "TypeError: Program exited with exit status 1:");
     console.log("   " + filename + ":" + line)
     console.log("   ", error, "is not defined");
     console.log("   At: ");
@@ -44,13 +44,13 @@ function throwError(error, line) {
 }
 
 function throwMainNotFound(main, filename) {
-    console.log(FgRed + "ERROR: Program exited with exit status 0:");
+    console.log(FgRed + "TypeErrror: Program exited with exit status 0:");
     console.log("   File", path.join(__dirname, "../" + filename), "did not contain public '" + main + "'", Reset);
     process.exit()
 }
 
 function throwModuleNotFound(mname, line, filename) {
-    console.log(FgRed + "ERROR: Program exited with exit status 0:");
+    console.log(FgRed + "TypeError: Program exited with exit status 0:");
     console.log("   " + filename + ":" + line)
     console.log("   Module", mname, "is undefined.");
     console.log("   At: ");
@@ -59,7 +59,7 @@ function throwModuleNotFound(mname, line, filename) {
 }
 
 function throwUED(fname, file) {
-    console.log(FgRed + "ERROR: Program exited with exit status 3:");
+    console.log(FgRed + "SyntaxError: Program exited with exit status 3:");
     console.log("   Unexpected end of input at function: " + fname);
     console.log("   At: ");
     console.log("   ", path.join(__dirname, "../" + file), Reset);
