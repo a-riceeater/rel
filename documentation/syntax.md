@@ -22,3 +22,9 @@ Application is the default library which has many default features.
 `public main() {`: This is stating where your code will go. The name must always match the filename.
 
 `}(main)`: The `}` is signfying the end of a function. The `(main)` is telling the interperter which function is ending.
+
+## Comments
+
+Comments in rel can be stated in two ways.
+1. `//`
+2. `#`
