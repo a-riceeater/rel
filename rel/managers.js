@@ -12,7 +12,6 @@ function checkForEnd(fname, d) {
 function handleFunction(line, fline, fname) {
     const obj = line.substring(0, line.indexOf("."));
     const method = line.split(".")[1].replace(line.split("(")[1], "").replace("(", "");
-    
     eval(modules.ms[obj][method](line.split("(")[1].replace(")", "")))
 
     return true;

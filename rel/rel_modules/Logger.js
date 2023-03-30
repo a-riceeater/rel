@@ -9,8 +9,11 @@ function println(message) {
     return true;
 }
 
-function inputRead() {
+
+const prompt = require('prompt-sync')();
+function inputRead(message) {
     // handle this later
+    prompt(message);
 }
 
-module.exports = { println }
+module.exports = { println, inputRead }
