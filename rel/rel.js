@@ -19,7 +19,7 @@ fs.readFile("./rel.json", (err, data) => {
       const rel = JSON.parse(data)
 
       console.log(requires.FgRed + "ERROR: Program exited with exit status 0:");
-      console.log("   " + path.join(__dirname, rel.main))
-      console.log("ENODENT: no such file or directory");
+      console.log("   " + path.join(__dirname, "../" + rel.main))
+      console.log("ENODENT: no such file or directory", requires.Reset);
     }
 })
