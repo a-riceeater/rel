@@ -17,7 +17,8 @@ async function interp(file) {
     if (!mainEnds) errors.throwUED(file.replace(/\.[^/.]+$/, ""), file)
     
 
-    for (let i = 0; i < flines.length; i++) {
+    for (let i = 0; i < flines.length; i++) { 
+        if (flines[i].trim().endsWith(";")) errors.throwSyntax(";", file)
         const line = flines[i].replaceAll("\r", "").trim();
 
         if (line == "") continue; 

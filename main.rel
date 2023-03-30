@@ -1,8 +1,6 @@
 using <Application>
 using <Logger>
 
-public main () {
-    Logger.println("Hello, World")
-}(main);
-
-abc
+public main() {
+    Logger.println("Hello, World!")
+}(main)

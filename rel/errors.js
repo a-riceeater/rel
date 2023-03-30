@@ -37,6 +37,7 @@ function throwTypeError(error, line, filename) {
     console.log("   ", error, "is not defined");
     console.log("   At: ");
     console.log("   ", filename + ":" + line, Reset);
+    process.exit();
 }
 
 function throwError(error, line) {
@@ -66,8 +67,16 @@ function throwUED(fname, file) {
     process.exit()
 }
 
+function throwSyntax(char, file) {
+    console.log(FgRed + "SyntaxError: Program exited with exit status 3:");
+    console.log("   Unexpected character: " + char);
+    console.log("   At: ");
+    console.log("   ", path.join(__dirname, "../" + file), Reset);
+    process.exit()
+}
+
 function hasError() {
     return error;
 }
 
-module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED }
+module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax }
