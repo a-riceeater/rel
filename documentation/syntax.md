@@ -28,3 +28,7 @@ Application is the default library which has many default features.
 Comments in rel can be stated in two ways.
 1. `//`
 2. `#`
+
+All the code after the comment symbols will not be read by the interperter.
+
+Comments cannot be placed on the same line after any function is declared.
