@@ -49,6 +49,7 @@ async function putVariable(name, value, fname, fline) {
 }
 
 function getVariable(name) {
+    if (!variables[name]) errors.throwUndefined(name)
     return variables[name];
 }
 

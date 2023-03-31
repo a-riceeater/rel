@@ -2,11 +2,6 @@ using <Application>
 using <Logger>
 
 public main() {
-    void hello() {
-        Logger.println("Hello function executed")
-    }(hello)
-
-    Logger.println("hello")
-
-    hello()
+    Logger.println(name)
+    define name = "a"
 }(main) 
