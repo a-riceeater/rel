@@ -1,7 +1,8 @@
 using <Application>
 using <Logger>
+using <EServer>
 
 public main() {
-    Logger.println(name)
-    define name = "a"
+    define name = Logger.inputRead("henwo. what is name? ")
+    Logger.println("Hello, " + name + ". My name is Elijah!")   
 }(main)

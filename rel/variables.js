@@ -19,7 +19,7 @@ async function putVariable(name, value, fname, fline) {
         }
 
         const obj = value.substring(0, value.indexOf("."));
-        const method = value.split(".")[1].replace(value.split("(")[1], "").replace("(", "");
+        const method = value.split(".")[1].replace(/\(.*/g, '');
 
         if (!modules.ms[obj]) {
             console.log(FgRed + "TypeError: Program exited with exit status 1:");

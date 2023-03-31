@@ -1,6 +1,6 @@
 const used = [];
 const ms = {}
-const modules = ["<Logger>", "<Application>"];
+const modules = ["<Logger>", "<Application>", "<EServer>"];
 const errors = require("./errors")
 
 function adduse(mname, line, file) {

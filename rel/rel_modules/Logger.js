@@ -13,7 +13,9 @@ function println(message) {
 
 const prompt = require('prompt-sync')();
 function inputRead(message) {
-    return prompt(manager.isVariable(message) ? message : message.substring(1, message.length - 1)).toString();
+    const p = prompt(manager.isVariable(message) ? message : message.substring(1, message.length - 1))
+    if (!p) process.exit();
+    return p;
 }
 
 module.exports = { println, inputRead }
