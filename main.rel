@@ -4,4 +4,4 @@ using <Logger>
 public main() {
     Logger.println(name)
     define name = "a"
-}(main) 
+}(main)

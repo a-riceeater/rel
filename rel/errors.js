@@ -83,7 +83,7 @@ function throwVarExists(vname, file, line) {
     process.exit()
 }
 
-function throwUndefined(vname, file, line) {
+function throwUndefined(vname) {
     console.log(FgRed + "TypeError: Program exited with exit status 4:");
     console.log("   Undefined: \"" + vname + "\"", Reset);
     process.exit()
