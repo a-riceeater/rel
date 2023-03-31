@@ -6,5 +6,5 @@ public main() {
         Logger.println("Hello function executed")
     }(hello)
 
-    hello()
+    Logger.println("hello")
 }(main) 

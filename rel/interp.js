@@ -28,12 +28,14 @@ async function interp(file) {
         if (line == "") continue; 
 
         else if (line.includes("}(")) {
-            if (readingFunction && !executingFunction) {
+            if (readingFunction || executingFunction) {
                 if (readingFunction == line.split("(")[1].replace(")", "")) {
                     readingFunction = false;
                 }
             }
         }
+
+        else if (readingFunction && !executingFunction) continue; 
 
         else if (line.startsWith("#") || line.startsWith("//")) continue; // comments
 
@@ -49,6 +51,10 @@ async function interp(file) {
             var a = line.split("void ")[1];
             if (a.i("(")) a = a.replace(a.split("(")[1], "").replace("(", "");
             readingFunction = a
+
+            const ended = await manager.checkForEnd(readingFunction, fd);
+
+            if (!ended) errors.throwUED(readingFunction, file);
         }
 
         // else if (line.i("(") && line.i(")")) handle function call later
