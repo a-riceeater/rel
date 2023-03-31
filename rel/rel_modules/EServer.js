@@ -14,6 +14,8 @@ function createServer() {
     return myApp;
 }
 
+
+
 function routeFile(u, f) {
     if (!myApp) process.exit(); // throw error of no server later
     console.log(u, f)

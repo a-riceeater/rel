@@ -6,7 +6,8 @@ const Reset = "\x1b[0m"
 const FgRed = "\x1b[31m"
 
 function isVariable(d) {
-    return !d.startsWith("\"") && !d.endsWith("\"")
+    if (isNumeric(d)) return false;
+    else return !d.startsWith("\"") && !d.endsWith("\"")
 }
 
 async function putVariable(name, value, fname, fline) {
@@ -44,13 +45,19 @@ async function putVariable(name, value, fname, fline) {
         variables[name] = response.toString();
     } else {
         if (variables[name]) return errors.throwVarExists(name, fname, fline)
-        variables[name] = value.substring(1, value.length - 1);
+        isNumeric(value) ? variables[name] = value : variables[name] = value.substring(1, value.length - 1);
     }
 }
 
 function getVariable(name) {
     if (!variables[name]) errors.throwUndefined(name)
     return variables[name];
+}
+
+function isNumeric(str) {
+    if (typeof str != "string") return false // we only process strings!  
+    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+        !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 }
 
 module.exports = { variables, putVariable, getVariable };

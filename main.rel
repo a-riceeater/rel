@@ -7,5 +7,7 @@ public main() {
     
     EServer.routeFile("/", "index.htm")
 
-    EServer.listen("3000")
+    define port = 3000
+    EServer.listen(port)
+    Logger.println("Server running on port " + port)
 }(main)
