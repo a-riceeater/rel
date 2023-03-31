@@ -8,4 +8,6 @@ public main() {
     }(braeton)
 
     braeton()
+
+    ()
 }(main)

@@ -21,7 +21,6 @@ async function interp(file) {
 
     var readingFunction = false;
     var executingFunction = false;
-    const cr = /^(?!public).*hello\(\)[^{}]*$/;
 
     async function ia() {
         for (let i = 0; i < flines.length; i++) {
@@ -63,8 +62,9 @@ async function interp(file) {
             }
             
             else if (line.i("(") && line.endsWith(")")) {
-                executingFunction = line.substring(0, line.indexOf("("));
-                ia();
+                executingFunction = line.substring(0, line.indexOf("(")).trim();
+                if (executingFunction == "") errors.throwTypeError("()", i, file)
+               ia();
             }
 
             else errors.throwTypeError(line, i, file)
