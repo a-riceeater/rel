@@ -36,7 +36,7 @@ Example `rel.json`:
 
 ## Features coming soon
 
-- A module which allows you to create an express server to route files, etc.
+- More functionality to EServer module (post requests)
 - Functions with arguments (and returning)
 - Including variables and string in the same function
 - etc
