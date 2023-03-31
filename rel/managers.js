@@ -56,7 +56,7 @@ async function handleFunction(line, fline, fname) {
         if (isVariable(line.split("(")[1].replace(")", ""))) {
             modules.ms[obj][method](variables.getVariable(line.split("(")[1].replace(")", "")))
         } else {
-            modules.ms[obj][method](line.split("(")[1].replace(")", ""))
+            modules.ms[obj][method](line.split("(")[1].replace(")", "").substring(1, line.split("(")[1].replace(")", "").length - 1))
         }
     }
 

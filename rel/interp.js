@@ -4,7 +4,8 @@ const path = requires.path;
 const manager = requires.manager;
 const errors = require("./errors");
 const handlers = require("./handlers");
-const variables = require("./variables")
+const variables = require("./variables");
+const { exec } = require("child_process");
 
 
 async function interp(file) {
@@ -17,51 +18,67 @@ async function interp(file) {
 
     const mainEnds = await manager.checkForEnd(file.replace(/\.[^/.]+$/, ""), fd);
     if (!mainEnds) errors.throwUED(file.replace(/\.[^/.]+$/, ""), file)
-    
+
     var readingFunction = false;
     var executingFunction = false;
+    const cr = /^(?!public).*hello\(\)[^{}]*$/;
 
-    for (let i = 0; i < flines.length; i++) { 
-        if (flines[i].trim().endsWith(";")) errors.throwSyntax(";", file)
-        const line = flines[i].replaceAll("\r", "").trim();
+    async function ia() {
+        for (let i = 0; i < flines.length; i++) {
+            if (flines[i].trim().endsWith(";")) errors.throwSyntax(";", file)
+            const line = flines[i].replaceAll("\r", "").trim();
 
-        if (line == "") continue; 
+            //console.log(executingFunction, line)
 
-        else if (line.includes("}(")) {
-            if (readingFunction || executingFunction) {
-                if (readingFunction == line.split("(")[1].replace(")", "")) {
-                    readingFunction = false;
+            if (line == "") continue;
+
+            else if (line.includes("}(")) {
+                if (readingFunction || executingFunction) {
+                    // console.log(executingFunction, "ef2", executingFunction, line.split("(")[1].replace(")", "").trim() == executingFunction.toString().trim())
+                    if (readingFunction == line.split("(")[1].replace(")", "") || executingFunction.toString().trim() == line.split("(")[1].replace(")", "").trim()) {
+                        readingFunction = false;
+                        if (executingFunction) return executingFunction = false;
+                    }
                 }
             }
+
+            else if (readingFunction) continue;
+
+            else if (line.startsWith("#") || line.startsWith("//")) continue; // comments
+
+            else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) continue;
+
+            else if (line.i("using ")) await manager.use(line.split(" ")[1], i, file);
+
+            else if (line.startsWith("define ")) await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);
+
+            else if (line.i(".")) await manager.handleFunction(line, i, file);
+
+            else if (line.i("void ")) {
+                if (executingFunction) continue;
+                var a = line.split("void ")[1];
+                if (a.i("(")) a = a.replace(a.split("(")[1], "").replace("(", "");
+                readingFunction = a
+
+                const ended = await manager.checkForEnd(readingFunction, fd);
+
+                if (!ended) errors.throwUED(readingFunction, file);
+            }
+            
+            else if (cr.test(line)) {
+                executingFunction = line.substring(0, line.indexOf("("));
+                ia();
+            }
+
+            else errors.throwTypeError(line, i, file)
+
+            if (i == flines.length - 1) return true;
+
         }
 
-        else if (readingFunction && !executingFunction) continue; 
-
-        else if (line.startsWith("#") || line.startsWith("//")) continue; // comments
-
-        else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) continue;
-    
-        else if (line.i("using ")) await manager.use(line.split(" ")[1], i, file);
-
-        else if (line.startsWith("define ")) await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);
-
-        else if (line.i(".")) await manager.handleFunction(line, i, file); 
-
-        else if (line.i("void ")) {
-            var a = line.split("void ")[1];
-            if (a.i("(")) a = a.replace(a.split("(")[1], "").replace("(", "");
-            readingFunction = a
-
-            const ended = await manager.checkForEnd(readingFunction, fd);
-
-            if (!ended) errors.throwUED(readingFunction, file);
-        }
-
-        // else if (line.i("(") && line.i(")")) handle function call later
-        
-
-        else errors.throwTypeError(line, i, file)
     }
+
+    ia();
 
     return true;
 }

@@ -7,4 +7,6 @@ public main() {
     }(hello)
 
     Logger.println("hello")
+
+    hello()
 }(main) 
