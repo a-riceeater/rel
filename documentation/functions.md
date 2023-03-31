@@ -13,3 +13,9 @@ void hello() {
 ```
 
 The `(hello)` at the `}` is stating which function is ending.
+
+## Caling a function
+
+To call a function, add the following code:
+
+`myfunction()`
