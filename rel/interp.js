@@ -6,6 +6,7 @@ const errors = require("./errors");
 const handlers = require("./handlers");
 const variables = require("./variables")
 
+
 async function interp(file) {
     const fd = fs.readFileSync(file, "utf8")
     const flines = fd.split("\n")
@@ -17,6 +18,8 @@ async function interp(file) {
     const mainEnds = await manager.checkForEnd(file.replace(/\.[^/.]+$/, ""), fd);
     if (!mainEnds) errors.throwUED(file.replace(/\.[^/.]+$/, ""), file)
     
+    var readingFunction = false;
+    var executingFunction = false;
 
     for (let i = 0; i < flines.length; i++) { 
         if (flines[i].trim().endsWith(";")) errors.throwSyntax(";", file)
@@ -24,17 +27,32 @@ async function interp(file) {
 
         if (line == "") continue; 
 
+        else if (line.includes("}(")) {
+            if (readingFunction && !executingFunction) {
+                if (readingFunction == line.split("(")[1].replace(")", "")) {
+                    readingFunction = false;
+                }
+            }
+        }
+
         else if (line.startsWith("#") || line.startsWith("//")) continue; // comments
 
-        else if (line.includes("public " + file.replace(/\.[^/.]+$/, ""))) continue;
+        else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) continue;
     
         else if (line.i("using ")) await manager.use(line.split(" ")[1], i, file);
 
         else if (line.startsWith("define ")) await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);
 
         else if (line.i(".")) await manager.handleFunction(line, i, file); 
+
+        else if (line.i("void ")) {
+            var a = line.split("void ")[1];
+            if (a.i("(")) a = a.replace(a.split("(")[1], "").replace("(", "");
+            readingFunction = a
+        }
+
+        // else if (line.i("(") && line.i(")")) handle function call later
         
-        else if (line.includes("}(") || line.includes("} (")) continue; // switch to handle function ends later
 
         else errors.throwTypeError(line, i, file)
     }

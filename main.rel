@@ -2,9 +2,9 @@ using <Application>
 using <Logger>
 
 public main() {
-    define a = Logger.inputRead("Hello, What is your name? ")
-    Logger.println("Hello, " + a + ". It is nice to meet you!")
+    void hello() {
+        Logger.println("Hello function executed")
+    }(hello)
 
-    define a = 2
-    Logger.println(a)
+    hello()
 }(main) 

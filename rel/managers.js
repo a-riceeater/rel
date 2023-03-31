@@ -77,4 +77,8 @@ function cpu(o, t, l, f) {
     process.exit();
 }
 
-module.exports = { use, checkForEnd, handleFunction, isVariable }
+function handleVoid(line, line, file) {
+    return 0;
+}
+
+module.exports = { use, checkForEnd, handleFunction, isVariable, handleVoid }
