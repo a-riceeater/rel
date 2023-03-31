@@ -28,13 +28,10 @@ async function interp(file) {
             if (flines[i].trim().endsWith(";")) errors.throwSyntax(";", file)
             const line = flines[i].replaceAll("\r", "").trim();
 
-            //console.log(executingFunction, line)
-
             if (line == "") continue;
 
             else if (line.includes("}(")) {
                 if (readingFunction || executingFunction) {
-                    // console.log(executingFunction, "ef2", executingFunction, line.split("(")[1].replace(")", "").trim() == executingFunction.toString().trim())
                     if (readingFunction == line.split("(")[1].replace(")", "") || executingFunction.toString().trim() == line.split("(")[1].replace(")", "").trim()) {
                         readingFunction = false;
                         if (executingFunction) return executingFunction = false;
