@@ -3,11 +3,9 @@ using <Logger>
 using <EServer>
 
 public main() {
-    void braeton() {
-        Logger.println("Hello")
-    }(braeton)
+    define server = EServer.createServer()
+    
+    EServer.routeFile("/", "index.htm")
 
-    braeton()
-
-    ()
+    EServer.listen("3000")
 }(main)

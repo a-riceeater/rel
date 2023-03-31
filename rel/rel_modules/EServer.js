@@ -5,6 +5,7 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const errors = require("../errors")
 
 var myApp;
 
@@ -13,4 +14,23 @@ function createServer() {
     return myApp;
 }
 
-module.exports = { createServer }
+function routeFile(u, f) {
+    if (!myApp) process.exit(); // throw error of no server later
+    console.log(u, f)
+
+    myApp.get(u, (req, res) => {
+        console.log("Routed " + u + " to " + f)
+        res.sendFile(path.join(__dirname, `../../` + f));
+    })
+}
+
+function listen(port) {
+    if (!port) port = 3000;
+    if (!myApp) process.exit() // throw error of no server later
+
+    myApp.listen(parseInt(port), () => {
+        return true;
+    })
+}
+
+module.exports = { createServer, routeFile, listen }

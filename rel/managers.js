@@ -52,6 +52,24 @@ async function handleFunction(line, fline, fname) {
                 modules.ms[obj][method](result);
             }
         }
+    }
+    else if (line.split("(")[1].replace(")", "").includes(",")) {
+        const parts = (line.split("(")[1].replace(")", "")).split(",");
+        let result = [];
+        for (let i = 0; i < parts.length; i++) {
+            const part = parts[i].trim();
+            if (!part.startsWith("\"") && !part.endsWith("\"")) {
+                var a = await variables.getVariable(part);
+                a.substring(1, a.length - 1)
+                result.push(a)
+            } else {
+                result.push(part.substring(1, part.length - 1));
+            }
+
+            if (i == parts.length - 1) {
+                modules.ms[obj][method](...result);
+            }
+        }
     } else {
         if (isVariable(line.split("(")[1].replace(")", ""))) {
             modules.ms[obj][method](variables.getVariable(line.split("(")[1].replace(")", "")))
