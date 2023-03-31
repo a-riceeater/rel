@@ -3,7 +3,9 @@ using <Logger>
 using <EServer>
 
 public main() {
-    // define es = Eserver
-    Logger.println()
-    //EServer.createServer("")
+    void braeton() {
+        Logger.println("Hello")
+    }(braeton)
+
+    braeton()
 }(main)

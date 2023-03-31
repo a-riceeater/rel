@@ -62,7 +62,7 @@ async function interp(file) {
                 if (!ended) errors.throwUED(readingFunction, file);
             }
             
-            else if (cr.test(line)) {
+            else if (line.i("(") && line.endsWith(")")) {
                 executingFunction = line.substring(0, line.indexOf("("));
                 ia();
             }
