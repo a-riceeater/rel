@@ -12,7 +12,7 @@ Syntax based on java and c#.
 2. Add your main file (placeholder is main.rel)
 3. Add your main to `rel.json`
 4. Begin to code
-5. Run by executing the bat with `./run`, or executing node `rel\rel`
+5. Run by executing the bat with `./run`, or executing `node rel\rel`
 
 OR
 

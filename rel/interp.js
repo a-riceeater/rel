@@ -28,11 +28,11 @@ async function interp(file) {
 
         else if (line.includes("public " + file.replace(/\.[^/.]+$/, ""))) continue;
     
-        else if (line.i("using ")) manager.use(line.split(" ")[1], i, file);
+        else if (line.i("using ")) await manager.use(line.split(" ")[1], i, file);
 
-        else if (line.startsWith("define ")) { variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i); continue }
+        else if (line.startsWith("define ")) await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);
 
-        else if (line.i(".")) manager.handleFunction(line, i, file); 
+        else if (line.i(".")) await manager.handleFunction(line, i, file); 
         
         else if (line.includes("}(") || line.includes("} (")) continue; // switch to handle function ends later
 

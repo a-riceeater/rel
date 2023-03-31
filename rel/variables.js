@@ -1,6 +1,7 @@
 const variables = {};
 const manager = require("./managers")
 const modules = require("./modules")
+const errors = require("./errors")
 const Reset = "\x1b[0m"
 const FgRed = "\x1b[31m"
 
@@ -10,6 +11,13 @@ function isVariable(d) {
 
 async function putVariable(name, value, fname, fline) {
     if (isVariable(value)) {
+        if (variables[name]) return errors.throwVarExists(name, fname, fline);
+
+        if (!value.includes(".")) {
+            variables[name] = value.substring(1, value.length - 1);
+            return;
+        }
+
         const obj = value.substring(0, value.indexOf("."));
         const method = value.split(".")[1].replace(value.split("(")[1], "").replace("(", "");
 
@@ -35,6 +43,7 @@ async function putVariable(name, value, fname, fline) {
         const response = modules.ms[obj][method](value.split("(")[1].replace(")", ""))
         variables[name] = response.toString();
     } else {
+        if (variables[name]) return errors.throwVarExists(name, fname, fline)
         variables[name] = value.substring(1, value.length - 1);
     }
 }

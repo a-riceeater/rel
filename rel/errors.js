@@ -75,8 +75,16 @@ function throwSyntax(char, file) {
     process.exit()
 }
 
+function throwVarExists(vname, file, line) {
+    console.log(FgRed + "TypeError: Program exited with exit status 4:");
+    console.log("   Variable already declared: Variable \"" + vname + "\" already exists.");
+    console.log("   At: ");
+    console.log("   ", path.join(__dirname, "../" + file) + ":" + line, Reset);
+    process.exit()
+}
+
 function hasError() {
     return error;
 }
 
-module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax }
+module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax, throwVarExists }
