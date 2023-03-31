@@ -3,6 +3,7 @@ using <Logger>
 using <EServer>
 
 public main() {
-    define name = Logger.inputRead("henwo. what is name? ")
-    Logger.println("Hello, " + name + ". My name is Elijah!")   
+    // define es = Eserver
+    Logger.println()
+    //EServer.createServer("")
 }(main)

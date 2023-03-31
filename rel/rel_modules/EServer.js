@@ -6,6 +6,11 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 
-function createServer() {
+var myApp;
 
+function createServer() {
+    myApp = express();
+    return myApp;
 }
+
+module.exports = { createServer }

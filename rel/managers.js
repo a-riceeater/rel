@@ -64,7 +64,8 @@ async function handleFunction(line, fline, fname) {
 }
 
 function isVariable(d) {
-    return !d.startsWith("\"") && !d.endsWith("\"")
+    if (d == "") return false
+    else return !d.startsWith("\"") && !d.endsWith("\"")
 }
 
 
