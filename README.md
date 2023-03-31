@@ -6,7 +6,7 @@ A funky "programming" language made in Node.Js
 
 Syntax based on java and c#.
 
-## Usage
+## Usage/Instalation
 
 1. Clone the github repository.
 2. Add your main file (placeholder is main.rel)
@@ -14,7 +14,25 @@ Syntax based on java and c#.
 4. Begin to code
 5. Run by executing the bat with `./run`, or executing node `rel\rel`
 
-Documentation may come later.
+OR
+
+1. Find the latest release
+2. Run the installer
+3. Create your `.rel` file
+4. Create `rel.json`
+5. Follow the other steps from above
+
+Example `rel.json`:
+
+```
+{
+    "name": "my cool project",
+    "version": "1.0.0",
+    "main": "main.rel",
+    "author": "ghwosty",
+    "showExit": false
+}
+```
 
 ## Features coming soon
 
