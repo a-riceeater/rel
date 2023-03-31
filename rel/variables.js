@@ -35,7 +35,7 @@ async function putVariable(name, value, fname, fline) {
         const response = modules.ms[obj][method](value.split("(")[1].replace(")", ""))
         variables[name] = response.toString();
     } else {
-        variables[name] = value;
+        variables[name] = value.substring(1, value.length - 1);
     }
 }
 

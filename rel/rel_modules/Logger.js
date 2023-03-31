@@ -5,7 +5,8 @@
 const manager = require("../managers")
 
 function println(message) {
-    console.log(manager.isVariable(message) ? message : message.substring(1, message.length - 1));
+    //console.log(manager.isVariable(message) ? message : message.substring(1, message.length - 1));
+    console.log(message)
     return true;
 }
 
