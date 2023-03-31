@@ -14,7 +14,7 @@ function checkForEnd(fname, d) {
 
 async function handleFunction(line, fline, fname) {
     const obj = line.substring(0, line.indexOf("."));
-    const method = line.split(".")[1].replace(line.split("(")[1], "").replace("(", "");
+    const method = line.split(".")[1].replace(/\(.*/g, '');
 
     if (!modules.ms[obj]) {
         console.log(FgRed + "TypeError: Program exited with exit status 1:");

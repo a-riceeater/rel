@@ -2,6 +2,6 @@ using <Application>
 using <Logger>
 
 public main() {
-    define a = "b"
-    Logger.println("Hello, " + a)
+    define a = Logger.inputRead("Hello, What is your name? ")
+    Logger.println("Hello, " + a + ". It is nice to meet you!")
 }(main) 
