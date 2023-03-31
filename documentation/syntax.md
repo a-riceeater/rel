@@ -33,7 +33,7 @@ All the code after the comment symbols will not be read by the interperter.
 
 Comments cannot be placed on the same line after any function is declared.
 
-## Semicolons
+## Semicolons (;)
 
 Semicolons are not used in rel. They are not required.
 
