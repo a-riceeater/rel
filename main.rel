@@ -1,9 +1,7 @@
-using <Application>
 using <Logger>
-using <EServer>
+using <Timing>
 
 public main() {
-    if (a) {
-        Logger.println("a")
-    }(if)
+    Timing.wait("1000")
+    Logger.println("Finished!")
 }(main)

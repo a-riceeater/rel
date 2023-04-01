@@ -107,6 +107,8 @@ function handleIF(line, file, l) {
 
     if (o1.length == 1) {
         // handle truthy values
+    } else {
+        
     }
 
     return true;

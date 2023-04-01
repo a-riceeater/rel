@@ -27,8 +27,16 @@ function routeFile(u, f) {
 }
 
 function listen(port) {
-    if (!port) port = 3000;
-    if (!myApp) process.exit() // throw error of no server later
+    if (!port) {
+        console.log(FgRed + "TypeError: Program exited with exit status 4:");
+        console.log("   Undefined: No port name specified");
+        process.exit()
+    }
+    if (!myApp) {
+        console.log(FgRed + "TypeError: Program exited with exit status 4:");
+        console.log("   Undefined: No existing server");
+        process.exit()
+    }
 
     myApp.listen(parseInt(port), () => {
         return true;
