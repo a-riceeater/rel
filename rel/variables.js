@@ -12,13 +12,18 @@ function isVariable(d) {
 
 async function putVariable(name, value, fname, fline) {
     if (isVariable(value)) {
-        console.log(variables)
         //if (variables[name]) return errors.throwVarExists(name, fname, fline);
 
-        if (!value.includes(".")) {
+        if ((!value.includes(".")) && value != "true" && value != "false") {
             variables[name] = value.substring(1, value.length - 1);
             return;
         }
+
+
+        if (value == "false") value = false;
+        if (value == "true") value = true;
+
+        if (value || !value) return variables[name] = value;
 
         const obj = value.substring(0, value.indexOf("."));
         const method = value.split(".")[1].replace(/\(.*/g, '');
@@ -45,14 +50,12 @@ async function putVariable(name, value, fname, fline) {
         const response = modules.ms[obj][method](value.split("(")[1].replace(")", ""))
         variables[name] = response.toString();
     } else {
-        //console.log(variables)
-        //if (variables[name]) return errors.throwVarExists(name, fname, fline)
         isNumeric(value) ? variables[name] = value : variables[name] = value.substring(1, value.length - 1);
     }
 }
 
 function getVariable(name) {
-    if (!variables[name]) errors.throwUndefined(name)
+    if (variables[name] == null) errors.throwUndefined(name)
     return variables[name];
 }
 

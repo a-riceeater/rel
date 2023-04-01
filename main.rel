@@ -3,7 +3,7 @@ using <Timing>
 
 public main() {
 
-    define a = "a"
+    define a = true
 
     if (a) bb()
 
