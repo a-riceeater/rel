@@ -5,7 +5,7 @@ public main() {
 
     define a = true
 
-    if (a) bb()
+    if (true) bb()
 
     void bb() {
         Logger.println("You made it to bb!")

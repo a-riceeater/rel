@@ -27,7 +27,7 @@ async function interp(file) {
         for (let i = 0; i < flines.length; i++) {
             if (flines[i].trim().endsWith(";")) errors.throwSyntax(";", file)
             const line = flines[i].replaceAll("\r", "").trim();
-    
+
             if (line == "") continue;
 
 
@@ -40,7 +40,7 @@ async function interp(file) {
                 }
             }
 
-           // else if (executingFunction && (!line.includes("void ") && !line.i(executingFunction))) continue; // to prevent other code from executing until function is reached
+            // else if (executingFunction && (!line.includes("void ") && !line.i(executingFunction))) continue; // to prevent other code from executing until function is reached
 
             else if (readingFunction) continue;
 
@@ -66,7 +66,13 @@ async function interp(file) {
                 const ofunc = line.split(")")[1].replace("(", "").trim()
 
                 if (iffs.includes(i)) continue;
-                //console.log("ofunc:", ofunc)
+
+                if (o1 == "true") {
+                    executingFunction = ofunc.trim();
+                    iffs.push(i)
+                    if (executingFunction == "") errors.throwTypeError("()", i, file)
+                    ia();
+                }
 
                 if (o1.length == 1) {
                     // handle truthy values
