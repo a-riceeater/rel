@@ -12,7 +12,8 @@ function isVariable(d) {
 
 async function putVariable(name, value, fname, fline) {
     if (isVariable(value)) {
-        if (variables[name]) return errors.throwVarExists(name, fname, fline);
+        console.log(variables)
+        //if (variables[name]) return errors.throwVarExists(name, fname, fline);
 
         if (!value.includes(".")) {
             variables[name] = value.substring(1, value.length - 1);
@@ -44,7 +45,8 @@ async function putVariable(name, value, fname, fline) {
         const response = modules.ms[obj][method](value.split("(")[1].replace(")", ""))
         variables[name] = response.toString();
     } else {
-        if (variables[name]) return errors.throwVarExists(name, fname, fline)
+        //console.log(variables)
+        //if (variables[name]) return errors.throwVarExists(name, fname, fline)
         isNumeric(value) ? variables[name] = value : variables[name] = value.substring(1, value.length - 1);
     }
 }
@@ -55,9 +57,9 @@ function getVariable(name) {
 }
 
 function isNumeric(str) {
-    if (typeof str != "string") return false // we only process strings!  
-    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-        !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+    if (typeof str != "string") return false
+    return !isNaN(str) &&
+        !isNaN(parseFloat(str))
 }
 
 module.exports = { variables, putVariable, getVariable };

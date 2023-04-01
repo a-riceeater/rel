@@ -21,13 +21,15 @@ async function interp(file) {
 
     var readingFunction = false;
     var executingFunction = false;
+    var iffs = [];
 
     async function ia() {
         for (let i = 0; i < flines.length; i++) {
             if (flines[i].trim().endsWith(";")) errors.throwSyntax(";", file)
             const line = flines[i].replaceAll("\r", "").trim();
-
+    
             if (line == "") continue;
+
 
             else if (line.includes("}(")) {
                 if (readingFunction || executingFunction) {
@@ -38,19 +40,11 @@ async function interp(file) {
                 }
             }
 
+           // else if (executingFunction && (!line.includes("void ") && !line.i(executingFunction))) continue; // to prevent other code from executing until function is reached
+
             else if (readingFunction) continue;
 
             else if (line.startsWith("#") || line.startsWith("//")) continue; // comments
-
-            else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) continue;
-
-            else if (line.i("if (")) await manager.handleIF(line, file, i)
-
-            else if (line.i("using ")) await manager.use(line.split(" ")[1], i, file);
-
-            else if (line.startsWith("define ")) await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);
-
-            else if (line.i(".")) await manager.handleFunction(line, i, file);
 
             else if (line.i("void ")) {
                 if (executingFunction) continue;
@@ -62,11 +56,63 @@ async function interp(file) {
 
                 if (!ended) errors.throwUED(readingFunction, file);
             }
-            
-            else if (line.i("(") && line.endsWith(")")) {
-                executingFunction = line.substring(0, line.indexOf("(")).trim();
-                if (executingFunction == "") errors.throwTypeError("()", i, file)
-               ia();
+
+            else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) continue;
+
+            else if (line.i("if (")) {
+                const o1 = line.split("(")[1].replace(line.split(")")[1].replace("(", ""), "").replace(")", "").replace("{", "").trim()
+                //console.log("IF OPTIONS:", o1, o1.length)
+
+                const ofunc = line.split(")")[1].replace("(", "").trim()
+
+                if (iffs.includes(i)) continue;
+                //console.log("ofunc:", ofunc)
+
+                if (o1.length == 1) {
+                    // handle truthy values
+                    if (manager.isVariable(o1)) {
+                        const value = variables.getVariable(o1);
+                        //console.log(value, value == true)
+                        if (value) {
+                            if (executingFunction == ofunc.trim()) continue;
+                            //console.log(ofunc.trim(), "SET")
+                            executingFunction = ofunc.trim();
+                            iffs.push(i)
+                            if (executingFunction == "") errors.throwTypeError("()", i, file)
+                            ia();
+                        }
+                    } else {
+                        if (o1) {
+                            if (executingFunction != ofunc.trim()) {
+                                executingFunction = ofunc.trim();
+                                iffs.push(i)
+                                if (executingFunction == "") errors.throwTypeError("()", i, file)
+                                ia();
+                            }
+                            //console.log(ofunc.trim(), "SET")
+
+                        }
+                    }
+                } else {
+
+                }
+                continue;
+            }
+
+            else if (line.i("using ")) await manager.use(line.split(" ")[1], i, file);
+
+            else if (line.startsWith("define ")) {
+                await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);
+            }
+
+            else if (line.i(".")) await manager.handleFunction(line, i, file);
+
+            else if (line.i("(") && line.endsWith(")") && !line.i("}") && !line.i("if")) {
+                if (executingFunction != line.substring(0, line.indexOf("(")).trim()) {
+                    executingFunction = line.substring(0, line.indexOf("(")).trim();
+                    if (executingFunction == "") errors.throwTypeError("()", i, file)
+                    return ia();
+                }
             }
 
             else errors.throwTypeError(line, i, file)
@@ -87,8 +133,14 @@ function checkForMain(fname) {
     return fd.includes("public " + fname.replace(/\.[^/.]+$/, ""));
 }
 
+function ef(fname) {
+    executingFunction = fname.trim();
+    if (executingFunction == "") errors.throwTypeError("()", i, file)
+    ia();
+}
+
 String.prototype.i = function (s) {
     return this.includes(s);
 }
 
-module.exports = { interp }
+module.exports = { interp, ef }

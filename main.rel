@@ -2,6 +2,12 @@ using <Logger>
 using <Timing>
 
 public main() {
-    Timing.wait("1000")
-    Logger.println("Finished!")
+
+    define a = "a"
+
+    if (a) bb()
+
+    void bb() {
+        Logger.println("You made it to bb!")
+    }(bb)
 }(main)

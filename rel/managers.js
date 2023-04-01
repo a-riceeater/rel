@@ -23,7 +23,6 @@ async function handleFunction(line, fline, fname) {
         console.log("   At: ");
         console.log("   ", fname + ":" + fline, Reset);
         process.exit();
-        return;
     }
     if (!modules.ms[obj][method]) {
         console.log(FgRed + "TypeError: Program exited with exit status 1:");
@@ -32,7 +31,6 @@ async function handleFunction(line, fline, fname) {
         console.log("   At: ");
         console.log("   ", fname + ":" + fline, Reset);
         process.exit();
-        return
     };
 
     if (line.split("(")[1].replace(")", "").includes("+")) {
@@ -100,13 +98,23 @@ function handleVoid(line, l, file) {
     return 0;
 }
 
+// const interp = require("./interp")
 function handleIF(line, file, l) {
 
-    const o1 = line.split("(")[1].replace(")", "").replace("{", "").trim()
-    console.log("IF OPTIONS:", o1) 
+    const o1 = line.split("(")[1].replace(line.split(")")[1].replace("(", ""), "").replace(")", "").replace("{", "").trim()
+    console.log("IF OPTIONS:", o1, o1.length) 
+
+    const ofunc = line.split(")")[1].replace("(", "").trim()
+    console.log("ofunc:", ofunc)
 
     if (o1.length == 1) {
         // handle truthy values
+        if (isVariable(o1)) {
+            const value = variables.getVariable(o1);
+            if (value) interp.ef(ofunc)
+        } else {
+            if (o1) interp.ef(ofunc)
+        }
     } else {
         
     }
