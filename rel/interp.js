@@ -72,16 +72,15 @@ async function interp(file) {
                     iffs.push(i)
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
                     ia();
+                    return;
                 }
 
                 if (o1.length == 1) {
                     // handle truthy values
                     if (manager.isVariable(o1)) {
                         const value = variables.getVariable(o1);
-                        //console.log(value, value == true)
                         if (value) {
                             if (executingFunction == ofunc.trim()) continue;
-                            //console.log(ofunc.trim(), "SET")
                             executingFunction = ofunc.trim();
                             iffs.push(i)
                             if (executingFunction == "") errors.throwTypeError("()", i, file)
@@ -95,8 +94,6 @@ async function interp(file) {
                                 if (executingFunction == "") errors.throwTypeError("()", i, file)
                                 ia();
                             }
-                            //console.log(ofunc.trim(), "SET")
-
                         }
                     }
                 } else {
