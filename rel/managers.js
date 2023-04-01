@@ -96,8 +96,20 @@ function cpu(o, t, l, f) {
     process.exit();
 }
 
-function handleVoid(line, line, file) {
+function handleVoid(line, l, file) {
     return 0;
 }
 
-module.exports = { use, checkForEnd, handleFunction, isVariable, handleVoid }
+function handleIF(line, file, l) {
+
+    const o1 = line.split("(")[1].replace(")", "").replace("{", "").trim()
+    console.log("IF OPTIONS:", o1) 
+
+    if (o1.length == 1) {
+        // handle truthy values
+    }
+
+    return true;
+}
+
+module.exports = { use, checkForEnd, handleFunction, isVariable, handleVoid, handleIF }

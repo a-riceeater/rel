@@ -44,6 +44,8 @@ async function interp(file) {
 
             else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) continue;
 
+            else if (line.i("if (")) await manager.handleIF(line, file, i)
+
             else if (line.i("using ")) await manager.use(line.split(" ")[1], i, file);
 
             else if (line.startsWith("define ")) await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);

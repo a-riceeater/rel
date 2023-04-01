@@ -3,11 +3,7 @@ using <Logger>
 using <EServer>
 
 public main() {
-    define server = EServer.createServer()
-    
-    EServer.routeFile("/", "index.htm")
-
-    define port = 3000
-    EServer.listen(port)
-    Logger.println("Server running on port " + port)
+    if (a) {
+        Logger.println("a")
+    }(if)
 }(main)
