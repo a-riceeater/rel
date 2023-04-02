@@ -7,8 +7,8 @@ public main() {
     define myvar = "c"
 
     Logger.println("a")
-    #if ("c" == myvar) hello()
-    hello()
+    if ("c" == myvar) hello()
+    #hello()
 
     void hello() {
         Logger.println("The statement was true")

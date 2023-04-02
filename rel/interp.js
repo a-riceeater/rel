@@ -33,7 +33,6 @@ async function interp(file) {
 
             if (line == "") continue;
 
-
             else if (line.includes("}(")) {
                 if (readingFunction || executingFunction) {
                     if (readingFunction == line.split("(")[1].replace(")", "") || executingFunction.toString().trim() == line.split("(")[1].replace(")", "").trim()) {
@@ -49,9 +48,9 @@ async function interp(file) {
             else if (line.startsWith("#") || line.startsWith("//")) continue; // comments
 
             else if (line.i("void ")) {
-                if (executingFunction == line.split("void ")[1].replace(line.split("void ")[1].split("(")[1], "").replace("(", "")) pastVoid = true;
+                if (executingFunction == line.split("void ")[1].replace(line.split("void ")[1].split("(")[1], "").replace("(", "")) continue;
 
-                if (executingFunction) continue;
+                // if (executingFunction) continue;
                 var a = line.split("void ")[1];
                 if (a.i("(")) a = a.replace(a.split("(")[1], "").replace("(", "");
                 readingFunction = a
@@ -145,8 +144,7 @@ async function interp(file) {
                         executingFunction = ofunc.trim();
                         iffs.push(i)
                         if (executingFunction == "") errors.throwTypeError("()", i, file)
-                        console.log("calling " + parseInt(i + 1))
-                        ia(parseInt(i + 1));
+                        return ia(i);
                     }
                 }
                 continue;
