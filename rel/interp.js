@@ -86,7 +86,7 @@ async function interp(file) {
                     executingFunction = ofunc.trim();
                     iffs.push(i)
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
-                    ia(i);
+                    return ia(i);
                     return;
                 }
 
@@ -99,7 +99,7 @@ async function interp(file) {
                             executingFunction = ofunc.trim();
                             iffs.push(i)
                             if (executingFunction == "") errors.throwTypeError("()", i, file)
-                            ia(i);
+                            return ia(i);
                         }
                     } else {
                         if (o1) {
@@ -107,7 +107,7 @@ async function interp(file) {
                                 executingFunction = ofunc.trim();
                                 iffs.push(i)
                                 if (executingFunction == "") errors.throwTypeError("()", i, file)
-                                ia(i);
+                                return ia(i);
                             }
                         }
                     }
