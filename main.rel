@@ -3,8 +3,8 @@ using <Logger>
 public main() {
     define password = Logger.inputRead("Password? ")
     
-    if (password == "shin") correct()
-    if (password != "shin") wrong()
+    if (password == "a") correct()
+    #if (password != "a") wrong()
     
     void correct() {
         Logger.println("Welcome!")
