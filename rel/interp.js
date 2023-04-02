@@ -60,7 +60,7 @@ async function interp(file) {
             else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) continue;
 
             else if (line.i("if (")) {
-                const o1 = line.split("(")[1].replace(line.split(")")[1].replace("(", ""), "").replace(")", "").replace("{", "").trim()
+                var o1 = line.split("(")[1].replace(line.split(")")[1].replace("(", ""), "").replace(")", "").replace("{", "").trim()
                 //console.log("IF OPTIONS:", o1, o1.length)
 
                 const ofunc = line.split(")")[1].replace("(", "").trim()
@@ -97,7 +97,40 @@ async function interp(file) {
                         }
                     }
                 } else {
+                    var sideOne = o1.split(' ')[0]
+                    const comparisonExpression = o1.split('==').map(expr => expr.trim());
+                    const comparisonOperator = '==';
+                    let comparisonValue = comparisonExpression[1]
 
+                    if (manager.isVariable(sideOne)) sideOne = variables.getVariable(sideOne)
+                    if (manager.isVariable(comparisonValue)) comparisonValue = variables.getVariable(comparisonValue)
+
+                    if (manager.isVariable(sideOne)) sideOne = `"${sideOne}"`
+                    if (manager.isVariable(comparisonValue)) comparisonValue = `"${comparisonValue}"`
+
+                    //o1 = `${variableValue} ${comparisonOperator} ${quoteChar}${comparisonValue}${quoteChar}`;
+
+                    let comparisonResult;
+                    if (comparisonOperator === '==') {
+                        comparisonResult = sideOne == comparisonValue;
+                    } else if (comparisonOperator === '!=') {
+                        comparisonResult = sideOne != comparisonValue;
+                    } else if (comparisonOperator === '<') {
+                        comparisonResult = sideOne < comparisonValue;
+                    } else if (comparisonOperator === '>') {
+                        comparisonResult = sideOne > comparisonValue;
+                    } else if (comparisonOperator === '<=') {
+                        comparisonResult = sideOne <= comparisonValue;
+                    } else if (comparisonOperator === '>=') {
+                        comparisonResult = sideOne >= comparisonValue;
+                    }
+
+                    if (comparisonResult) {
+                        executingFunction = ofunc.trim();
+                        iffs.push(i)
+                        if (executingFunction == "") errors.throwTypeError("()", i, file)
+                        ia();
+                    }
                 }
                 continue;
             }

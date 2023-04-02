@@ -3,9 +3,9 @@ using <Timing>
 
 public main() {
 
-    define a = true
+    define a = "b"
 
-    if (true) bb()
+    if ("b" == a) bb()
 
     void bb() {
         Logger.println("You made it to bb!")
