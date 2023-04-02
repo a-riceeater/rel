@@ -38,7 +38,7 @@ async function interp(file) {
                 if (readingFunction || executingFunction) {
                     if (readingFunction == line.split("(")[1].replace(")", "") || executingFunction.toString().trim() == line.split("(")[1].replace(")", "").trim()) {
                         readingFunction = false;
-                        ia(parseInt(i + 1))
+                        if (executingFunction) ia(parseInt(i + 1))
                         if (executingFunction) return executingFunction = false;
                     }
                 }
