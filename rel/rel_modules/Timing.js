@@ -3,7 +3,6 @@
 */
 
 async function wait(time) {
-    console.log("sleeping " + time)
     await sleep(time);
     return true;
 }

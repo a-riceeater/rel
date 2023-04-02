@@ -6,7 +6,8 @@ public main() {
 
     define myvar = "c"
 
-    if (myvar == "c") hello()
+    Logger.println("h")
+    hello()
 
     void hello() {
         Logger.println("The statement was true")

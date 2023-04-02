@@ -23,8 +23,11 @@ async function interp(file) {
     var executingFunction = false;
     var iffs = [];
 
-    async function ia() {
-        for (let i = 0; i < flines.length; i++) {
+    var pastVoid = false;
+
+    async function ia(start) {
+        if (!start) start = 0;
+        for (let i = start; i < flines.length; i++) {
             if (flines[i].trim().endsWith(";")) errors.throwSyntax(";", file)
             const line = flines[i].replaceAll("\r", "").trim();
 
@@ -40,13 +43,13 @@ async function interp(file) {
                 }
             }
 
-            // else if (executingFunction && (!line.includes("void ") && !line.i(executingFunction))) continue; // to prevent other code from executing until function is reached
-
             else if (readingFunction) continue;
 
             else if (line.startsWith("#") || line.startsWith("//")) continue; // comments
 
             else if (line.i("void ")) {
+                if (executingFunction == line.split("void ")[1].replace(line.split("void ")[1].split("(")[1], "").replace("(", "")) pastVoid = true;
+
                 if (executingFunction) continue;
                 var a = line.split("void ")[1];
                 if (a.i("(")) a = a.replace(a.split("(")[1], "").replace("(", "");
@@ -56,6 +59,18 @@ async function interp(file) {
 
                 if (!ended) errors.throwUED(readingFunction, file);
             }
+
+            /*else if (executingFunction) {
+                if (!line.i("void ")) {
+                    console.log(line, pastVoid)
+                    if (!line.i(executingFunction) && !pastVoid) {
+                        // console.log(line)
+                        continue;
+                    } else {
+                        console.log("PASSED:", line)
+                    }
+                }
+            }*/
 
             else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) continue;
 
@@ -147,7 +162,7 @@ async function interp(file) {
                 if (executingFunction != line.substring(0, line.indexOf("(")).trim()) {
                     executingFunction = line.substring(0, line.indexOf("(")).trim();
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
-                    return ia();
+                    return ia(i);
                 }
             }
 
