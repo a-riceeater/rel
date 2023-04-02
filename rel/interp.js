@@ -38,6 +38,7 @@ async function interp(file) {
                 if (readingFunction || executingFunction) {
                     if (readingFunction == line.split("(")[1].replace(")", "") || executingFunction.toString().trim() == line.split("(")[1].replace(")", "").trim()) {
                         readingFunction = false;
+                        ia(parseInt(i + 1))
                         if (executingFunction) return executingFunction = false;
                     }
                 }
@@ -86,7 +87,7 @@ async function interp(file) {
                     executingFunction = ofunc.trim();
                     iffs.push(i)
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
-                    ia();
+                    ia(i);
                     return;
                 }
 
@@ -99,7 +100,7 @@ async function interp(file) {
                             executingFunction = ofunc.trim();
                             iffs.push(i)
                             if (executingFunction == "") errors.throwTypeError("()", i, file)
-                            ia();
+                            ia(i);
                         }
                     } else {
                         if (o1) {
@@ -107,7 +108,7 @@ async function interp(file) {
                                 executingFunction = ofunc.trim();
                                 iffs.push(i)
                                 if (executingFunction == "") errors.throwTypeError("()", i, file)
-                                ia();
+                                ia(i);
                             }
                         }
                     }
@@ -144,7 +145,8 @@ async function interp(file) {
                         executingFunction = ofunc.trim();
                         iffs.push(i)
                         if (executingFunction == "") errors.throwTypeError("()", i, file)
-                        ia();
+                        console.log("calling " + parseInt(i + 1))
+                        ia(parseInt(i + 1));
                     }
                 }
                 continue;

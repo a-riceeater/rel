@@ -6,10 +6,13 @@ public main() {
 
     define myvar = "c"
 
-    Logger.println("h")
+    Logger.println("a")
+    #if ("c" == myvar) hello()
     hello()
 
     void hello() {
         Logger.println("The statement was true")
     }(hello)
+
+    Logger.println("b")
 }(main)
