@@ -72,7 +72,8 @@ async function handleFunction(line, fline, fname) {
         if (isVariable(line.split("(")[1].replace(")", ""))) {
             modules.ms[obj][method](variables.getVariable(line.split("(")[1].replace(")", "")))
         } else {
-            modules.ms[obj][method](line.split("(")[1].replace(")", "").substring(1, line.split("(")[1].replace(")", "").length - 1))
+            if (isNumeric(line.split("(")[1].replace(")", ""))) modules.ms[obj][method](line.split("(")[1].replace(")", ""))
+            else modules.ms[obj][method](line.split("(")[1].replace(")", "").substring(1, line.split("(")[1].replace(")", "").length - 1))
         }
     }
 
@@ -80,8 +81,14 @@ async function handleFunction(line, fline, fname) {
 }
 
 function isVariable(d) {
-    if (d == "") return false
+    if (isNumeric(d)) return false;
     else return !d.startsWith("\"") && !d.endsWith("\"")
+}
+
+function isNumeric(str) {
+    if (typeof str != "string") return false
+    return !isNaN(str) &&
+        !isNaN(parseFloat(str))
 }
 
 

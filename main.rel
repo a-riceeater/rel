@@ -2,12 +2,13 @@ using <Logger>
 using <Timing>
 
 public main() {
+    Timing.wait(1000)
 
-    define a = "b"
+    define myvar = "c"
 
-    if ("b" == a) bb()
+    if (myvar == "c") hello()
 
-    void bb() {
-        Logger.println("You made it to bb!")
-    }(bb)
+    void hello() {
+        Logger.println("The statement was true")
+    }(hello)
 }(main)
