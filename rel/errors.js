@@ -89,8 +89,14 @@ function throwUndefined(vname) {
     process.exit()
 }
 
+function throwIFNotFound(fname) {
+    console.log(FgRed + "TypeError: Program exited with exit status 6:");
+    console.log("   Void was not found: \"" + fname + "\"", Reset);
+    process.exit()
+}
+
 function hasError() {
     return error;
 }
 
-module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax, throwVarExists, throwUndefined }
+module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax, throwVarExists, throwUndefined, throwIFNotFound }

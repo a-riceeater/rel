@@ -86,8 +86,9 @@ async function interp(file) {
                     executingFunction = ofunc.trim();
                     iffs.push(i)
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
+
+                    if (!checkVoid(ofunc.trim(), flines, i)) errors.throwIFNotFound(ofunc.trim())
                     return ia(i);
-                    return;
                 }
 
                 if (o1.length == 1) {
@@ -113,9 +114,13 @@ async function interp(file) {
                     }
                 } else {
                     var sideOne = o1.split(' ')[0]
-                    const comparisonExpression = o1.split('==').map(expr => expr.trim());
-                    const comparisonOperator = '==';
-                    let comparisonValue = comparisonExpression[1]
+                    const comparisonOperators = ['==', '!=', '<', '>', '<=', '>='];
+                    const comparisonExpressionRegex = new RegExp(`(${comparisonOperators.join('|')})`);
+
+                    const comparisonExpression = o1.split(comparisonExpressionRegex).map(expr => expr.trim());
+                    const comparisonOperator = comparisonExpression.find(op => comparisonOperators.includes(op));
+                    let comparisonValue = comparisonExpression[comparisonExpression.indexOf(comparisonOperator) + 1];
+
 
                     if (manager.isVariable(sideOne)) sideOne = variables.getVariable(sideOne)
                     if (manager.isVariable(comparisonValue)) comparisonValue = variables.getVariable(comparisonValue)
@@ -188,6 +193,15 @@ function ef(fname) {
     executingFunction = fname.trim();
     if (executingFunction == "") errors.throwTypeError("()", i, file)
     ia();
+}
+
+function checkVoid(vname, flines, i) {
+    flines = flines.slice(i);
+    for (let i = 0; i < flines.length; i++) {
+        //console.log(flines[i].trim())
+        if (flines[i].trim().i("void " + vname)) return true;
+        if (i == flines.length - 1) return false;
+    }
 }
 
 String.prototype.i = function (s) {

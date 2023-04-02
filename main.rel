@@ -1,18 +1,16 @@
 using <Logger>
-using <Timing>
 
 public main() {
-    Timing.wait(1000)
-
-    define myvar = "c"
-
-    Logger.println("a")
-    if ("c" == myvar) hello()
-    #hello()
-
-    void hello() {
-        Logger.println("The statement was true")
-    }(hello)
-
-    Logger.println("b")
+    define password = Logger.inputRead("Password? ")
+    
+    if (password == "shin") correct()
+    if (password != "shin") wrong()
+    
+    void correct() {
+        Logger.println("Welcome!")
+    }(correct)
+    
+    void wrong() {
+        Logger.println("Incorrect password.")
+    }(wrong)
 }(main)

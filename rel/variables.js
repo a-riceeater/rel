@@ -23,7 +23,7 @@ async function putVariable(name, value, fname, fline) {
         if (value == "false") value = false;
         if (value == "true") value = true;
 
-        if (value || !value) return variables[name] = value;
+        // if (value || !value) return variables[name] = value;
 
         const obj = value.substring(0, value.indexOf("."));
         const method = value.split(".")[1].replace(/\(.*/g, '');
@@ -35,7 +35,6 @@ async function putVariable(name, value, fname, fline) {
             console.log("   At: ");
             console.log("   ", fname + ":" + fline, Reset);
             process.exit();
-            return;
         }
         if (!modules.ms[obj][method]) {
             console.log(FgRed + "TypeError: Program exited with exit status 1:");
@@ -44,10 +43,9 @@ async function putVariable(name, value, fname, fline) {
             console.log("   At: ");
             console.log("   ", fname + ":" + fline, Reset);
             process.exit();
-            return
         };
 
-        const response = modules.ms[obj][method](value.split("(")[1].replace(")", ""))
+        const response = await modules.ms[obj][method](value.split("(")[1].replace(")", ""))
         variables[name] = response.toString();
     } else {
         isNumeric(value) ? variables[name] = value : variables[name] = value.substring(1, value.length - 1);
