@@ -13,7 +13,7 @@ function checkForEnd(fname, d) {
 }
 
 const path = require("path")
-async function handleFunction(line, fline, fname) {
+async function handleFunction(line, fline, fname, funcParams, executingFunction) {
     const obj = line.substring(0, line.indexOf("."));
     const method = line.split(".")[1].replace(/\(.*/g, '');
 
@@ -40,9 +40,17 @@ async function handleFunction(line, fline, fname) {
         for (let i = 0; i < parts.length; i++) {
             const part = parts[i].trim();
             if (!part.startsWith("\"") && !part.endsWith("\"")) {
-                var a = await variables.getVariable(part);
-                a.substring(1, a.length - 1)
-                result += a;
+                if (part.includes("Params.")) {
+                    let param = funcParams[executingFunction][part.split("Params.")[1]];
+                    if (!isNumeric(param.replaceAll("\"", ""))) param = param.substring(1, param.length - 1);
+
+                    result += param;
+                    
+                } else {
+                    var a = await variables.getVariable(part);
+                    a.substring(1, a.length - 1)
+                    result += a;
+                }
             } else {
                 result += part.substring(1, part.length - 1);
             }

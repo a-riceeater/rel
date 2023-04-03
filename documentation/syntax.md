@@ -1,6 +1,6 @@
 # rel syntax
 
-The syntax for rel is based on c# and java.
+The syntax for rel is based on `c#` and `java`.
 However, you do not have to define data types.
 
 ## file base
@@ -16,12 +16,12 @@ public main() {
 
 Let's see what this does.
 
-`using <Application>`: using is the keyword to require any module or library. 
+`using <Application>` `using` is the keyword to require any module or library. 
 Application is the default library which has many default features.
 
-`public main() {`: This is stating where your code will go. The name must always match the filename.
+`public main() {` This is stating where your code will go. The name must always match the filename.
 
-`}(main)`: The `}` is signfying the end of a function. The `(main)` is telling the interperter which function is ending.
+`}(main)` The `}` is signfying the end of a function. The `(main)` is telling the interperter which function is ending.
 
 ## Comments
 
@@ -29,11 +29,11 @@ Comments in rel can be stated in two ways.
 1. `//`
 2. `#`
 
-All the code after the comment symbols will not be read by the interperter.
+If a line starts with a comment symbol, then that line will be skipped by the interperter.
 
 Comments cannot be placed on the same line after any function is declared.
 
-#### Tip:
+### Tip:
 
 "Comments" can go after most* line of code, without as comment symbol.
 
@@ -52,10 +52,11 @@ public main() { start of main
 
 *1 Ending lines for functions (`}(main) end of main` will not work)
 
+*this feature deffinently wasn't an accident and is totally intentional 😊*
 
-## Semicolons (;)
+## Semicolons `(;)`
 
-Semicolons are no longer not allowed in rel. (Apr. 2, 2023)
+Semicolons are no longer not allowed in rel. *(Apr. 2, 2023)*
 
 You may choose to use a semicolon, but it is optional.
 

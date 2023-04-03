@@ -23,13 +23,14 @@ async function interp(file) {
     var executingFunction = false;
     var iffs = [];
     var trueIffs = [];
+    var funcParams = {};
 
     var pastMain = false;
 
     async function ia(start) {
         if (!start) start = 0;
         for (let i = start; i < flines.length; i++) {
-            if (flines[i].trim().endsWith(";")) flines[i] = flines[i].trim().substring(0, flines[i].length - 1)
+            if (flines[i].trim().endsWith(";")) flines[i] = flines[i].trim().substring(0, flines[i].trim().length - 1)
             const line = flines[i].replaceAll("\r", "").trim();
 
             if (line == "") continue;
@@ -185,13 +186,26 @@ async function interp(file) {
                 await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);
             }
 
-            else if (line.i(".")) await manager.handleFunction(line, i, file);
+            else if (line.i(".")) await manager.handleFunction(line, i, file, funcParams, executingFunction);
 
-            else if (line.i("(") && line.endsWith(")") && !line.i("}") && !line.i("if")) {
+            else if (line.i("(") && line.endsWith(")") && !line.i("}")) {
                 if (executingFunction != line.substring(0, line.indexOf("(")).trim()) {
                     if (!checkVoid(line.substring(0, line.indexOf("(")).trim().trim(), flines, i)) errors.throwIFNotFound(line.substring(0, line.indexOf("(")).trim().trim())
                     executingFunction = line.substring(0, line.indexOf("(")).trim();
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
+
+                    const prs = (line.split("(")[1].replace(")", "")).split(" ")
+                    if (!funcParams[executingFunction]) funcParams[executingFunction] = {};
+
+                    for (let i = 0; i < prs.length; i++) {
+                        const pr = prs[i];
+
+                        let name = pr.substring(0, pr.indexOf("="));
+                        let value = pr.split("=")[1];
+                        
+                        funcParams[executingFunction][name] = value;
+                    }
+
                     return ia(i);
                 }
             }
