@@ -22,6 +22,7 @@ async function interp(file) {
     var readingFunction = false;
     var executingFunction = false;
     var iffs = [];
+    var trueIffs = [];
 
     var pastVoid = false;
 
@@ -32,6 +33,7 @@ async function interp(file) {
             const line = flines[i].replaceAll("\r", "").trim();
 
             if (line == "") continue;
+
 
             else if (line.includes("}(")) {
                 if (readingFunction || executingFunction) {
@@ -85,6 +87,7 @@ async function interp(file) {
                 if (o1 == "true") {
                     executingFunction = ofunc.trim();
                     iffs.push(i)
+                    trueIffs.push(i)
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
 
                     if (!checkVoid(ofunc.trim(), flines, i)) errors.throwIFNotFound(ofunc.trim())
@@ -99,6 +102,7 @@ async function interp(file) {
                             if (executingFunction == ofunc.trim()) continue;
                             executingFunction = ofunc.trim();
                             iffs.push(i)
+                            trueIffs.push(i)
                             if (executingFunction == "") errors.throwTypeError("()", i, file)
                             return ia(i);
                         }
@@ -107,6 +111,7 @@ async function interp(file) {
                             if (executingFunction != ofunc.trim()) {
                                 executingFunction = ofunc.trim();
                                 iffs.push(i)
+                                trueIffs.push(i)
                                 if (executingFunction == "") errors.throwTypeError("()", i, file)
                                 return ia(i);
                             }
@@ -148,11 +153,25 @@ async function interp(file) {
                     if (comparisonResult) {
                         executingFunction = ofunc.trim();
                         iffs.push(i)
+                        trueIffs.push(i)
                         if (executingFunction == "") errors.throwTypeError("()", i, file)
                         return ia(i);
                     }
                 }
                 continue;
+            }
+
+            else if (line.i("else ")) {
+                const res = await getLastIf(flines, i)
+                const lastIf = res[0];
+                const lastIfLine = res[1];
+
+                if (!trueIffs.includes(lastIfLine)) {
+                    const ofunc = line.split("else ")[1].replace(")", "").replace("(", "")
+                    executingFunction = ofunc.trim();
+                    if (executingFunction == "") errors.throwTypeError("()", i, file)
+                    return ia(parseInt(i + 1));
+                }
             }
 
             else if (line.i("using ")) await manager.use(line.split(" ")[1], i, file);
@@ -198,9 +217,14 @@ function ef(fname) {
 function checkVoid(vname, flines, i) {
     flines = flines.slice(i);
     for (let i = 0; i < flines.length; i++) {
-        //console.log(flines[i].trim())
         if (flines[i].trim().i("void " + vname)) return true;
         if (i == flines.length - 1) return false;
+    }
+}
+
+function getLastIf(flines, ia) {
+    for (let i = 0; i < ia; i++) {
+        if (flines[i].i("if ")) return [flines[i].trim(), i];
     }
 }
 

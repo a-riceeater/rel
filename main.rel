@@ -4,7 +4,7 @@ public main() {
     define password = Logger.inputRead("Password? ")
     
     if (password == "a") correct()
-    #if (password != "a") wrong()
+    else wrong()
     
     void correct() {
         Logger.println("Welcome!")
