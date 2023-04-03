@@ -29,7 +29,7 @@ async function interp(file) {
     async function ia(start) {
         if (!start) start = 0;
         for (let i = start; i < flines.length; i++) {
-            if (flines[i].trim().endsWith(";")) flines[i] = flines[i].substring(0, flines[i].length - 1)
+            if (flines[i].trim().endsWith(";")) flines[i] = flines[i].trim().substring(0, flines[i].length - 1)
             const line = flines[i].replaceAll("\r", "").trim();
 
             if (line == "") continue;
