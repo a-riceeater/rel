@@ -12,6 +12,7 @@ function checkForEnd(fname, d) {
     return d.includes(`}(${fname})`);
 }
 
+const path = require("path")
 async function handleFunction(line, fline, fname) {
     const obj = line.substring(0, line.indexOf("."));
     const method = line.split(".")[1].replace(/\(.*/g, '');
@@ -21,7 +22,7 @@ async function handleFunction(line, fline, fname) {
         console.log("   " + fname + ":" + fline)
         console.log("   Undefined:", obj, "is not defined");
         console.log("   At: ");
-        console.log("   ", fname + ":" + fline, Reset);
+        console.log("   ", path.join(__dirname, "../" + fname) + ":" + fline, Reset);
         process.exit();
     }
     if (!modules.ms[obj][method]) {
@@ -29,7 +30,7 @@ async function handleFunction(line, fline, fname) {
         console.log("   " + fname + ":" + fline)
         console.log("   Undefined: Could not find method " + method + " in object", obj);
         console.log("   At: ");
-        console.log("   ", fname + ":" + fline, Reset);
+        console.log("   ", path.join(__dirname, "../" + fname) + ":" + fline, Reset);
         process.exit();
     };
 

@@ -24,16 +24,15 @@ async function interp(file) {
     var iffs = [];
     var trueIffs = [];
 
-    var pastVoid = false;
+    var pastMain = false;
 
     async function ia(start) {
         if (!start) start = 0;
         for (let i = start; i < flines.length; i++) {
-            if (flines[i].trim().endsWith(";")) errors.throwSyntax(";", file)
+            if (flines[i].trim().endsWith(";")) flines[i] = flines[i].substring(0, flines[i].length - 1)
             const line = flines[i].replaceAll("\r", "").trim();
 
             if (line == "") continue;
-
 
             else if (line.includes("}(")) {
                 if (readingFunction || executingFunction) {
@@ -74,7 +73,10 @@ async function interp(file) {
                 }
             }*/
 
-            else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) continue;
+            else if (line.i("public " + file.replace(/\.[^/.]+$/, ""))) {
+                pastMain = true;
+                continue;
+            }
 
             else if (line.i("if (")) {
                 var o1 = line.split("(")[1].replace(line.split(")")[1].replace("(", ""), "").replace(")", "").replace("{", "").trim()
@@ -174,7 +176,10 @@ async function interp(file) {
                 }
             }
 
-            else if (line.i("using ")) await manager.use(line.split(" ")[1], i, file);
+            else if (line.i("using ")) {
+                if (pastMain) errors.throwIllegalUsing(file, i)
+                await manager.use(line.split(" ")[1], i, file);
+            }
 
             else if (line.startsWith("define ")) {
                 await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);
@@ -184,6 +189,7 @@ async function interp(file) {
 
             else if (line.i("(") && line.endsWith(")") && !line.i("}") && !line.i("if")) {
                 if (executingFunction != line.substring(0, line.indexOf("(")).trim()) {
+                    if (!checkVoid(line.substring(0, line.indexOf("(")).trim().trim(), flines, i)) errors.throwIFNotFound(line.substring(0, line.indexOf("(")).trim().trim())
                     executingFunction = line.substring(0, line.indexOf("(")).trim();
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
                     return ia(i);

@@ -95,8 +95,15 @@ function throwIFNotFound(fname) {
     process.exit()
 }
 
+function throwIllegalUsing(fname, line) {
+    console.log(FgRed + "TypeError: Program exited with exit status 6:");
+    console.log("   Illegal use statement");
+    console.log("   ", path.join(__dirname, "../" + fname) + ":" + line, Reset);
+    process.exit()
+}
+
 function hasError() {
     return error;
 }
 
-module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax, throwVarExists, throwUndefined, throwIFNotFound }
+module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax, throwVarExists, throwUndefined, throwIFNotFound, throwIllegalUsing }

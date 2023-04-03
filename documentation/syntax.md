@@ -33,8 +33,30 @@ All the code after the comment symbols will not be read by the interperter.
 
 Comments cannot be placed on the same line after any function is declared.
 
+#### Tip:
+
+"Comments" can go after most* line of code, without as comment symbol.
+
+For example:
+
+```
+using <Application> this is requiring the application module
+using <Logger> this is requiring the logger module
+
+public main() { start of main
+    Logger.println("Hello World!")
+}(main)
+```
+
+*1 Except for lines with dot functions (ex. `Logger.println("Hi") prints hi` will not work),
+
+*1 Ending lines for functions (`}(main) end of main` will not work)
+
+
 ## Semicolons (;)
 
-Semicolons are not used in rel. They are not required.
+Semicolons are no longer not allowed in rel. (Apr. 2, 2023)
 
-If one trys to use a semicolon, a syntax error will be thrown.
+You may choose to use a semicolon, but it is optional.
+
+If you are using a version past said date, semicolons will not be required, and a syntax error will be thrown.
