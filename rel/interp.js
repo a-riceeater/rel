@@ -194,11 +194,11 @@ async function interp(file) {
                     executingFunction = line.substring(0, line.indexOf("(")).trim();
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
 
-                    const prs = (line.split("(")[1].replace(")", "")).split(" ")
+                    const prs = (line.split("(")[1].replace(")", "")).split(",")
                     if (!funcParams[executingFunction]) funcParams[executingFunction] = {};
 
                     for (let i = 0; i < prs.length; i++) {
-                        const pr = prs[i];
+                        const pr = prs[i].trim();
 
                         let name = pr.substring(0, pr.indexOf("="));
                         let value = pr.split("=")[1];

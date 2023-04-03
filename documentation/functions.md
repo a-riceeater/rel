@@ -19,3 +19,21 @@ The `(hello)` at the `}` is stating which function is ending.
 To call a function, add the following code:
 
 `myfunction()`
+
+## Functions with parameters
+
+functions with parameters can be called with the following syntax:
+
+```
+myfunction(,first="John", last="Doe", full="John Doe")
+```
+
+function paramters can be accessed with the `Params` object.
+
+```
+void myfunction() {
+    Logger.println("Hello " + Params.full + "!")
+}(hello)
+```
+
+There is no need to list the parameters in the void line.

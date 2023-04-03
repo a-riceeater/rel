@@ -2,10 +2,10 @@ using <Application> this is requiring the application module
 using <Logger> this is requiring the logger module
 
 public main() {
-    hello(name="a")
+    hello(,name="a b c", p="lol")
 
-    void hello(name) {
-        Logger.println("Hello " + Params.name + "!")
+    void hello() {
+        Logger.println("Hello " + Params.p + "!")
     }(hello)
 
 
