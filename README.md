@@ -39,7 +39,8 @@ Example `rel.json`:
 - More functionality to EServer module (post requests)
 - Functions with arguments (and returning)
 - Including variables and string in the same function
-- etc
+- An exe for terminal
+- Use exe to allow projects to be made without having to clone the repository every time
 
 
 ## Example Code
