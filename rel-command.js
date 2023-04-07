@@ -1,0 +1,70 @@
+const yargs = require('yargs');
+const prompt = require("prompt-sync")({ sigint: false });
+const path = require('path');
+const cwd = process.cwd();
+const fs = require("fs")
+const pkgFetch = require('pkg-fetch');
+
+(async () => {
+  // Create command-line arguments
+  const argv = yargs
+    .command('rel', 'Run a rel application', {
+      name: {
+        describe: 'Run a rel application',
+        demandOption: true,
+        type: 'string'
+      }
+    })
+    .argv;
+
+
+  if (!argv._[0]) {
+    console.log("Welcome to rel v1.0.0")
+    console.log("Type \".exit\" to quit.")
+    function ask() {
+      const a = prompt(">> ");
+      try {
+        if (a == ".exit") process.exit();
+        eval(a);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        ask();
+      }
+    }
+    ask()
+
+  } else {
+    // const result = shell.exec('node rel');
+    //if (result.code !== 0) return console.error(result.stderr);
+
+
+    const interper = require('./interp');
+    const handlers = require("./handlers");
+    const requires = require("./requires");
+
+    const rel = JSON.parse(fs.readFileSync(path.join(cwd, "rel.json")))
+
+    console.log(rel)
+    //fs.readFile(path.join(cwd, "rel.json"), (err, data) => {
+    // if (err) throw err;
+    handlers.wl("-- New Instance Started -- ")
+    //const rel = JSON.parse(data)
+    const file = rel.main;
+    if (fs.existsSync(file)) {
+      interper.interp(file) // path.join(cwd, file)
+        .then(() => {
+          handlers.wl("-- Instance Finished -- ")
+          if (rel.showExit) console.log("Program exited with status code 0.")
+        })
+    }
+    else {
+      console.log(requires.FgRed + "ERROR: Program exited with exit status 0:");
+      console.log("   " + path.join(cwd, "../" + rel.main))
+      console.log("ENODENT: no such file or directory", requires.Reset);
+    }
+    //})
+
+    return;
+  }
+})();

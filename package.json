@@ -1,0 +1,22 @@
+{
+    "name": "rel",
+    "version": "1.0.0",
+    "description": "",
+    "main": "rel.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "glob": "^9.2.1",
+        "pkg-fetch": "^3.4.2",
+        "prompt-sync": "^4.2.0",
+        "shelljs": "^0.8.5",
+        "yargs": "^17.7.1"
+    },
+    "bin": {
+        "rel": "rel-command.js"
+    }
+}

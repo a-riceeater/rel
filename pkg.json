@@ -1,0 +1,9 @@
+{
+    "name": "rel",
+    "version": "1.0.0",
+    "description": "rel command line app",
+    "main": "rel.js",
+    "bin": {
+      "rel": "rel.js"
+    }
+  }
