@@ -1,12 +1,19 @@
-using <Application> this is requiring the application module
-using <Logger> this is requiring the logger module
+using <Logger>
 
 public main() {
-    hello(,name="a b c", p="lol")
-
-    void hello() {
-        Logger.println("Hello " + Params.p + "!")
-    }(hello)
 
 
+    define password = Logger.inputRead("Password: ")
+
+    if (password == "a") correct()
+
+    else wrong()
+
+    void correct() {
+        Logger.println("Welcome!");
+    }(correct)
+
+    void wrong() {
+        Logger.println("Incorrect password.");
+    }(wrong)
 }(main)

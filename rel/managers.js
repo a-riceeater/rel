@@ -43,7 +43,7 @@ async function handleFunction(line, fline, fname, funcParams, executingFunction)
                 if (part.includes("Params.")) {
                     let param = funcParams[executingFunction][part.split("Params.")[1]];
 
-                    if (!param) process.exit();
+                    if (!param) process.exit(); // throw error later
 
                     if (!isNumeric(param.replaceAll("\"", ""))) param = param.substring(1, param.length - 1);
 
