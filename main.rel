@@ -5,7 +5,7 @@ public main() {
     hello(,name="a b c", p="lol")
 
     void hello() {
-        Logger.println("Hello " + Params.p + "!")
+        Logger.println("Hello " + Params.name + "!")
     }(hello)
 
 
