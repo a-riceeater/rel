@@ -5,7 +5,7 @@ A funky "programming" language made in Node.Js
 
 [![GitHub release](https://img.shields.io/github/release/ghwosty/rel?include_prereleases=&sort=semver&color=blue)](https://github.com/ghwosty/rel/releases/)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
-
+[![issues - rel](https://img.shields.io/github/issues/ghwosty/rel)](https://github.com/ghwosty/rel/issues)
 
 ## Download
 
