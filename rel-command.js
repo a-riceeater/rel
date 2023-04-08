@@ -35,24 +35,32 @@ const pkgFetch = require('pkg-fetch');
     ask()
 
   } else {
-    // const result = shell.exec('node rel');
-    //if (result.code !== 0) return console.error(result.stderr);
-
+    if (argv._[0] != "run") return console.error("Unknown command arguments:", argv._[0])
 
     const interper = require('./interp');
     const handlers = require("./handlers");
     const requires = require("./requires");
 
-    const rel = JSON.parse(fs.readFileSync(path.join(cwd, "rel.json")))
+    if (!fs.existsSync()) {
+      console.log(requires.FgRed + "ERROR: Program exited with exit status 0:");
+      console.log("   " + path.join(cwd, "../rel.json"))
+      console.log("ENODENT: no such file or directory", requires.Reset);
+      process.exit()
+    }
+    const rel = JSON.parse(fs.readFileSync(path.join(cwd, "rel.json"), (err) => {
+      console.log(requires.FgRed + "ERROR: Program exited with exit status 0:");
+      console.log("   " + path.join(cwd, "../rel.json"))
+      console.log("ENODENT: no such file or directory", requires.Reset);
+      process.exit()
+    }))
 
     console.log(rel)
-    //fs.readFile(path.join(cwd, "rel.json"), (err, data) => {
-    // if (err) throw err;
+    
     handlers.wl("-- New Instance Started -- ")
-    //const rel = JSON.parse(data)
+
     const file = rel.main;
     if (fs.existsSync(file)) {
-      interper.interp(file) // path.join(cwd, file)
+      interper.interp(file)
         .then(() => {
           handlers.wl("-- Instance Finished -- ")
           if (rel.showExit) console.log("Program exited with status code 0.")
@@ -63,7 +71,6 @@ const pkgFetch = require('pkg-fetch');
       console.log("   " + path.join(cwd, "../" + rel.main))
       console.log("ENODENT: no such file or directory", requires.Reset);
     }
-    //})
 
     return;
   }
