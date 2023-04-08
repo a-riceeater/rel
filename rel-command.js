@@ -41,15 +41,15 @@ const pkgFetch = require('pkg-fetch');
     const handlers = require("./handlers");
     const requires = require("./requires");
 
-    if (!fs.existsSync()) {
+    if (!fs.existsSync(path.join(cwd, "./rel.json"))) {
       console.log(requires.FgRed + "ERROR: Program exited with exit status 0:");
-      console.log("   " + path.join(cwd, "../rel.json"))
+      console.log("   " + path.join(cwd, "./rel.json"))
       console.log("ENODENT: no such file or directory", requires.Reset);
       process.exit()
     }
     const rel = JSON.parse(fs.readFileSync(path.join(cwd, "rel.json"), (err) => {
       console.log(requires.FgRed + "ERROR: Program exited with exit status 0:");
-      console.log("   " + path.join(cwd, "../rel.json"))
+      console.log("   " + path.join(cwd, "./rel.json"))
       console.log("ENODENT: no such file or directory", requires.Reset);
       process.exit()
     }))
