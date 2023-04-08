@@ -1,0 +1,5 @@
+using <Logger>
+
+public main() {
+    Logger.println("Hello World")
+}(main)

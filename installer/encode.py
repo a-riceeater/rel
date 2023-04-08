@@ -1,11 +1,3 @@
-import base64
-import os
-
-with open("installer/rel.zip", "rb") as f:
-    data = f.read()
-    base64_data = base64.b64encode(data).decode("utf-8")
-
-    print("Encoding...")
-    with open("installer/base64.txt", "w") as f:
-        f.write(base64_data)
-        print("Encoded!")
+version https://git-lfs.github.com/spec/v1
+oid sha256:487768cacab947d4100149e380947bf452eb12e4018316ccfc5790ce22072022
+size 286
