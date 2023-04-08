@@ -48,7 +48,7 @@ function throwError(error, line) {
 
 function throwMainNotFound(main, filename) {
     console.log(FgRed + "TypeErrror: Program exited with exit status 0:");
-    console.log("   File", path.join(cwd, "../" + filename), "did not contain public '" + main + "'", Reset);
+    console.log("   File", path.join(cwd, "./" + filename), "did not contain public '" + main + "'", Reset);
     process.exit()
 }
 
@@ -57,7 +57,7 @@ function throwModuleNotFound(mname, line, filename) {
     console.log("   " + filename + ":" + line)
     console.log("   Module", mname, "is undefined.");
     console.log("   At: ");
-    console.log("   ", path.join(cwd, "../" + filename) + ":" + line, Reset);
+    console.log("   ", path.join(cwd, "./" + filename) + ":" + line, Reset);
     process.exit()
 }
 
@@ -65,7 +65,7 @@ function throwUED(fname, file) {
     console.log(FgRed + "SyntaxError: Program exited with exit status 3:");
     console.log("   Unexpected end of input at function: " + fname);
     console.log("   At: ");
-    console.log("   ", path.join(cwd, "../" + file), Reset);
+    console.log("   ", path.join(cwd, "./" + file), Reset);
     process.exit()
 }
 
@@ -73,7 +73,7 @@ function throwSyntax(char, file) {
     console.log(FgRed + "SyntaxError: Program exited with exit status 3:");
     console.log("   Unexpected character: " + char);
     console.log("   At: ");
-    console.log("   ", path.join(cwd, "../" + file), Reset);
+    console.log("   ", path.join(cwd, "./" + file), Reset);
     process.exit()
 }
 
@@ -81,7 +81,7 @@ function throwVarExists(vname, file, line) {
     console.log(FgRed + "TypeError: Program exited with exit status 4:");
     console.log("   Variable already declared: Variable \"" + vname + "\" already exists.");
     console.log("   At: ");
-    console.log("   ", path.join(cwd, "../" + file) + ":" + line, Reset);
+    console.log("   ", path.join(cwd, "./" + file) + ":" + line, Reset);
     process.exit()
 }
 
@@ -100,7 +100,7 @@ function throwIFNotFound(fname) {
 function throwIllegalUsing(fname, line) {
     console.log(FgRed + "TypeError: Program exited with exit status 6:");
     console.log("   Illegal use statement");
-    console.log("   ", path.join(cwd, "../" + fname) + ":" + line, Reset);
+    console.log("   ", path.join(cwd, "./" + fname) + ":" + line, Reset);
     process.exit()
 }
 
