@@ -1,5 +1,9 @@
 using <Logger>
+using <RFrame>
+using <Timing>
 
 public main() {
-    Logger.println("Hello World")
+    #Timing.wait(1000)
+    #RFrame.cw("400", "500")
+    Logger.println("Henwo")
 }(main)

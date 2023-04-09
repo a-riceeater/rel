@@ -1,6 +1,6 @@
 const used = [];
 const ms = {}
-const modules = ["<Logger>", "<Application>", "<EServer>", "<Timing>"];
+const modules = ["<Logger>", "<Application>", "<EServer>", "<Timing>", "<RFrame>"];
 const errors = require("./errors")
 const path = require("path")
 

@@ -4,7 +4,7 @@ const requires = require("./requires");
 const path = requires.path;
 const fs = requires.fs;
 
-fs.readFile(path.join(__dirname, "./rel.json"), (err, data) => {
+fs.readFile(path.join(__dirname, "./exampleProject/rel.json"), (err, data) => {
     if (err) throw err;
     handlers.wl("-- New Instance Started -- ")
     const rel = JSON.parse(data)
