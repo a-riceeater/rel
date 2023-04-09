@@ -8,7 +8,7 @@ A funky "programming" language made in Node.Js
 [![issues - rel](https://img.shields.io/github/issues/ghwosty/rel)](https://github.com/ghwosty/rel/issues)
 
 ## Download
-
+[Download Here](https://github.com/ghwosty/rel/releases/)
 
 
 ## Syntax
