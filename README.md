@@ -48,6 +48,7 @@ Example `rel.json`:
 - More functionality to EServer module (post requests)
 - Functions with returning
 - Frame module
+- Math Evaluation
 
 
 ## Example Code
