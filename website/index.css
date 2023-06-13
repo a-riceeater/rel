@@ -79,8 +79,8 @@ body {
 }
 
 #downloadBtn {
-    width: 200px;
-    height: 40px;
+    width: 250px;
+    height: 50px;
     color: white;
     font-family: 'Google Sans', serif;
     cursor: pointer;
@@ -88,6 +88,11 @@ body {
     border: none;
     border-radius: 2px;
     padding: 6px;
+}
+
+#downloadBtn span {
+    font-size: 15px;
+    margin-left: 15px;
 }
 
 #downloadAmt {
