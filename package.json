@@ -4,7 +4,7 @@
     "description": "",
     "main": "rel.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "compile": "npx pkg --targets node14-win-x64 rel.js"
     },
     "keywords": [],
     "author": "",

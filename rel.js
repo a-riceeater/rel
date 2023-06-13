@@ -5,8 +5,11 @@ const cwd = process.cwd();
 const fs = require("fs")
 const pkgFetch = require('pkg-fetch');
 
+const interper = require('./interp');
+const handlers = require("./handlers");
+const requires = require("./requires");
+
 (async () => {
-  // Create command-line arguments
   const argv = yargs
     .command('rel', 'Run a rel application', {
       name: {
@@ -25,10 +28,12 @@ const pkgFetch = require('pkg-fetch');
       const a = prompt(">> ");
       try {
         if (a == ".exit") process.exit();
-        eval(a);
+        interper.interp(a, true)
+        .then(() => {
+          ask();
+        })
       } catch (err) {
         console.error(err);
-      } finally {
         ask();
       }
     }
@@ -37,17 +42,14 @@ const pkgFetch = require('pkg-fetch');
   } else {
     if (argv._[0] != "run") return console.error("Unknown command arguments:", argv._[0])
 
-    const interper = require('./interp');
-    const handlers = require("./handlers");
-    const requires = require("./requires");
-
     if (!fs.existsSync(path.join(cwd, "./rel.json"))) {
       console.log(requires.FgRed + "ERROR: Program exited with exit status 0:");
       console.log("   " + path.join(cwd, "./rel.json"))
       console.log("ENODENT: no such file or directory", requires.Reset);
       process.exit()
     }
-    const rel = JSON.parse(fs.readFileSync(path.join(cwd, "rel.json"), (err) => {
+
+    const rel = JSON.parse(fs.readFileSync(path.join(cwd, "rel.json"), () => {
       console.log(requires.FgRed + "ERROR: Program exited with exit status 0:");
       console.log("   " + path.join(cwd, "./rel.json"))
       console.log("ENODENT: no such file or directory", requires.Reset);
@@ -64,6 +66,9 @@ const pkgFetch = require('pkg-fetch');
         .then(() => {
           handlers.wl("-- Instance Finished -- ")
           if (rel.showExit) console.log("Program exited with status code 0.")
+        })
+        .catch((err) => {
+          console.error(err);
         })
     }
     else {
