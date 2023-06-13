@@ -6,10 +6,10 @@ A funky "programming" language made in Node.Js
 [![GitHub release](https://img.shields.io/github/release/ghwosty/rel?include_prereleases=&sort=semver&color=blue)](https://github.com/ghwosty/rel/releases/)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 [![issues - rel](https://img.shields.io/github/issues/ghwosty/rel)](https://github.com/ghwosty/rel/issues)
+![Platform](https://img.shields.io/badge/platform-windows-lightgrey)
 
 ## Download
-[Download Here](https://github.com/ghwosty/rel/releases/)
-
+[![Download Rel](https://img.shields.io/badge/DOWNLOAD%20REL%20INSTALLER-v1.0.2-blue?style=for-the-badge)](https://github.com/ghwosty/rel/releases/latest)
 
 ## Syntax
 
@@ -48,6 +48,7 @@ Example `rel.json`:
 - More functionality to EServer module (post requests)
 - Functions with returning
 - Frame module
+- Math Evaluation
 
 
 ## Example Code
