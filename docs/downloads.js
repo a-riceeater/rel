@@ -6,7 +6,7 @@ const numberWithCommas = (x) => {
 }
 
 
-fetch("https://rel-server.onrender.com/downloads")
+fetch("https://server-rel.darthvader1925.repl.co/downloads")
     .then((d) => d.text())
     .then((d) => {
         document.getElementById("trlDownloads").innerText = numberWithCommas(d);
@@ -16,7 +16,7 @@ fetch("https://rel-server.onrender.com/downloads")
         console.error(err);
     })
 
-fetch("https://rel-server.onrender.com/current-version")
+fetch("https://server-rel.darthvader1925.repl.co/current-version")
     .then((d) => d.text())
     .then((d) => {
         document.querySelector("#latestVersion").innerHTML = "v" + d;

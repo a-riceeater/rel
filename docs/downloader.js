@@ -2,7 +2,7 @@ const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-fetch("https://rel-server.onrender.com/downloads")
+fetch("https://server-rel.darthvader1925.repl.co/downloads")
     .then((d) => d.text())
     .then((d) => {
         document.getElementById("downloadAmt").innerText = numberWithCommas(d);
@@ -13,7 +13,7 @@ fetch("https://rel-server.onrender.com/downloads")
         document.getElementById("downloadLabel").innerText = " to load downloads"
     })
 
-fetch("https://rel-server.onrender.com/current-version")
+fetch("https://server-rel.darthvader1925.repl.co/current-version")
     .then((d) => d.text())
     .then((d) => {
         document.querySelector("#downloadBtn > span").innerHTML = "Download v" + d
@@ -26,13 +26,13 @@ fetch("https://rel-server.onrender.com/current-version")
 document.getElementById("downloadLink").addEventListener("click", (e) => {
     e.preventDefault();
 
-    fetch("https://rel-server.onrender.com/update-downloads", {
+    fetch("https://server-rel.darthvader1925.repl.co/update-downloads", {
         method: "POST"
     })
         .then(() => {
             window.location = "https://github.com/a-riceeater/rel/releases/latest/download/rel.exe"
 
-            fetch("https://rel-server.onrender.com/downloads")
+            fetch("https://server-rel.darthvader1925.repl.co/downloads")
                 .then((d) => d.text())
                 .then((d) => {
                     document.getElementById("downloadAmt").innerText = numberWithCommas(d);
