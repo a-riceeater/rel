@@ -60,4 +60,4 @@ Semicolons are no longer not allowed in rel. *(Apr. 2, 2023)*
 
 You may choose to use a semicolon, but it is optional.
 
-If you are using a version past said date, semicolons will not be required, and a syntax error will be thrown.
+If you are using a version after said date, semicolons will not be required, and a syntax error will not be thrown.
