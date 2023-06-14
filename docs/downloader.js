@@ -8,6 +8,7 @@ fetch("https://rel-server.onrender.com/downloads")
         document.getElementById("downloadAmt").innerText = numberWithCommas(d);
     })
     .catch((err) => {
+        console.error(err);
         document.getElementById("downloadAmt").innerText = "Failed"
         document.getElementById("downloadLabel").innerText = " to load downloads"
     })
@@ -18,6 +19,7 @@ fetch("https://rel-server.onrender.com/current-version")
         document.querySelector("#downloadBtn > span").innerHTML = "Download v" + d
     })
     .catch((err) => {
+        console.error(err);
         document.querySelector("#downloadBtn > span").innerHTML = "Download"
     })
 
@@ -36,6 +38,7 @@ document.getElementById("downloadLink").addEventListener("click", (e) => {
                     document.getElementById("downloadAmt").innerText = numberWithCommas(d);
                 })
                 .catch((err) => {
+                    console.error(err);
                     document.getElementById("downloadAmt").innerText = "Failed"
                     document.getElementById("downloadLabel").innerText = " to load downloads"
                 })
