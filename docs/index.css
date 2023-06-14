@@ -50,15 +50,15 @@ body {
     top: 50%;
     right: 1%;
     background-color: transparent;
-    border: 1px solid gray;
+    border: none; 
     color: lightgray;
     font-family: 'Inter', serif;
     cursor: pointer;
     padding-right: 10px;
-    font-weight: 600;
     padding-top: 3px;
     padding-bottom: 3px;
     border-radius: 1.5px;
+    font-size: 16px;
 }
 
 #title {
@@ -116,7 +116,11 @@ body {
     top: 50%;
     transform: translate(0%, -50%);
     cursor: pointer;
-    border: 1px solid gray;
     padding: 5px;
     border-radius: 1px;
+    color: white;
+}
+
+p {
+    font-family: 'Google Sans', sans-serif;
 }
