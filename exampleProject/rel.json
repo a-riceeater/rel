@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "main": "main.rel",
     "author": "ghwosty",
-    "showExit": true,
+    "showExit": false,
     "showJson": false
 }
