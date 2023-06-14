@@ -54,7 +54,7 @@ const pkgFetch = require('pkg-fetch');
             process.exit()
         }))
 
-        console.log(rel)
+        if (rel.showJson == true) console.log(rel)
 
         handlers.wl("-- New Instance Started -- ")
 

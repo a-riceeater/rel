@@ -1,3 +1,5 @@
 installer/node_modules/electron/dist/electron.exe
 installer/dist
 installer/node_modules/
+exe-backups
+rel.exe

@@ -4,7 +4,7 @@
     "description": "",
     "main": "rel.js",
     "scripts": {
-        "compile": "npx pkg --targets node14-win-x64 rel.js"
+        "compile": "npx pkg --targets node18-win-x64 rel.js"
     },
     "keywords": [],
     "author": "",
