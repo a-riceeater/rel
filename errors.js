@@ -33,75 +33,75 @@ const BgGray = "\x1b[100m"
 
 const cwd = process.cwd();
 
-function throwTypeError(error, line, filename, a) {
+function throwTypeError(error, line, filename) {
     console.log(FgRed + "TypeError: Program exited with exit status 1:");
     console.log("   " + filename + ":" + line)
     console.log("   ", error, "is not defined");
     console.log("   At: ");
     console.log("   ", filename + ":" + line, Reset);
-    if (!a) process.exit();
+    process.exit();
 }
 
 function throwError(error, line) {
 
 }
 
-function throwMainNotFound(main, filename, a) {
+function throwMainNotFound(main, filename) {
     console.log(FgRed + "TypeErrror: Program exited with exit status 0:");
-    console.log("   File", path.join(cwd, "./" + filename), "did not contain public '" + main + "'", Reset);
-    if (!a) process.exit()
+    console.log("   File", path.join(cwd, "../" + filename), "did not contain public '" + main + "'", Reset);
+    process.exit()
 }
 
-function throwModuleNotFound(mname, line, filename, a) {
+function throwModuleNotFound(mname, line, filename) {
     console.log(FgRed + "TypeError: Program exited with exit status 0:");
     console.log("   " + filename + ":" + line)
     console.log("   Module", mname, "is undefined.");
     console.log("   At: ");
-    console.log("   ", path.join(cwd, "./" + filename) + ":" + line, Reset);
-    if (!a) process.exit()
+    console.log("   ", path.join(cwd, "../" + filename) + ":" + line, Reset);
+    process.exit()
 }
 
-function throwUED(fname, file, a) {
+function throwUED(fname, file) {
     console.log(FgRed + "SyntaxError: Program exited with exit status 3:");
     console.log("   Unexpected end of input at function: " + fname);
     console.log("   At: ");
-    console.log("   ", path.join(cwd, "./" + file), Reset);
-    if (!a) process.exit()
+    console.log("   ", path.join(cwd, "../" + file), Reset);
+    process.exit()
 }
 
-function throwSyntax(char, file, a) {
+function throwSyntax(char, file) {
     console.log(FgRed + "SyntaxError: Program exited with exit status 3:");
     console.log("   Unexpected character: " + char);
     console.log("   At: ");
-    console.log("   ", path.join(cwd, "./" + file), Reset);
-    if (!a) process.exit()
+    console.log("   ", path.join(cwd, "../" + file), Reset);
+    process.exit()
 }
 
-function throwVarExists(vname, file, line, a) {
+function throwVarExists(vname, file, line) {
     console.log(FgRed + "TypeError: Program exited with exit status 4:");
     console.log("   Variable already declared: Variable \"" + vname + "\" already exists.");
     console.log("   At: ");
-    console.log("   ", path.join(cwd, "./" + file) + ":" + line, Reset);
-    if (!a) process.exit()
+    console.log("   ", path.join(cwd, "../" + file) + ":" + line, Reset);
+    process.exit()
 }
 
-function throwUndefined(vname, a) {
+function throwUndefined(vname) {
     console.log(FgRed + "TypeError: Program exited with exit status 5:");
     console.log("   Undefined: \"" + vname + "\"", Reset);
-    if (!a) process.exit()
+    process.exit()
 }
 
-function throwIFNotFound(fname, a) {
+function throwIFNotFound(fname) {
     console.log(FgRed + "TypeError: Program exited with exit status 6:");
     console.log("   Void was not found: \"" + fname + "\"", Reset);
-    if (!a) process.exit()
+    process.exit()
 }
 
-function throwIllegalUsing(fname, line, a) {
+function throwIllegalUsing(fname, line) {
     console.log(FgRed + "TypeError: Program exited with exit status 6:");
     console.log("   Illegal use statement");
-    console.log("   ", path.join(cwd, "./" + fname) + ":" + line, Reset);
-    if (!a) process.exit()
+    console.log("   ", path.join(cwd, "../" + fname) + ":" + line, Reset);
+    process.exit()
 }
 
 function hasError() {
