@@ -1,7 +1,8 @@
 using <Logger>
-using <Timing>
+using <EServer>
 
 public main() {
-    Timing.wait(5000)
-    Logger.println("Henwo")
+    //EServer.createServer();
+    Logger.println()
+    //EServer.listen(3000)
 }(main)
