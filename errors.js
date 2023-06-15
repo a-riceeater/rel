@@ -61,6 +61,15 @@ function throwModuleNotFound(mname, line, filename) {
     process.exit()
 }
 
+function throwModuleNotLocated(mname, line, file) {
+    console.log(FgRed + "ENOENT: Program exited with exit status 0:");
+    console.log("   " + filename + ":" + line)
+    console.log("   Module", mname, "could not be located.");
+    console.log("   At: ");
+    console.log("   ", path.join(cwd, "../" + file) + ":" + line, Reset);
+    process.exit()
+}
+
 function throwUED(fname, file) {
     console.log(FgRed + "SyntaxError: Program exited with exit status 3:");
     console.log("   Unexpected end of input at function: " + fname);
@@ -108,4 +117,4 @@ function hasError() {
     return error;
 }
 
-module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax, throwVarExists, throwUndefined, throwIFNotFound, throwIllegalUsing }
+module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax, throwVarExists, throwUndefined, throwIFNotFound, throwIllegalUsing, throwModuleNotLocated }

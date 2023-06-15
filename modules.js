@@ -1,15 +1,20 @@
 const used = [];
 const ms = {}
-const modules = ["<Logger>", "<Application>", "<EServer>", "<Timing>", "<RFrame>"];
+const builtInModules = ["<Logger>", "<Application>", "<EServer>", "<Timing>", "<RFrame>"];
 const errors = require("./errors")
 const path = require("path")
+const fs = require("fs")
 
 function adduse(mname, line, file) {
     if (!mname.startsWith("<") || !mname.endsWith(">")) return errors.throwModuleNotFound(mname, line + ":" + "1", file);
-    if (!modules.includes(mname)) return errors.throwModuleNotFound(mname, line + ":" + "1", file);
+    // if (!builtInModules.includes(mname)) return errors.throwModuleNotFound(mname, line + ":" + "1", file); - removed due to adding custom module feature !
     mname = mname.substring(1, mname.length - 1)
     used.push(mname);
-    ms[mname] = require(path.join("C:\\Program Files\\rel", "./rel_modules/" + mname))
+
+    const location = path.join("C:\\Program Files\\rel", "./rel_modules/" + mname);
+    if (!fs.existsSync(location)) return errors.throwModuleNotFound(mname, line, file);
+
+    ms[mname] = require(location)
     return true;
 }
 
