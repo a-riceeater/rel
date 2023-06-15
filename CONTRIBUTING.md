@@ -38,3 +38,6 @@ Once you believe that your addition or bug fixes are ready to be published, you 
 
 ## License
 All the code, documentation, and website is licensed under the [MIT License](https://github.com/a-riceeater/rel/blob/main/LICENSE).
+
+## Guidelines
+**When contributing to rel, please make sure to follow these community guidelines**
