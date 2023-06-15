@@ -18,6 +18,14 @@ Otherwise, if you are fine with using the `exampleProject` folder (or any other 
 If you are trying to add/fix new rel interperter features, you must understand how the rel code structure works. When the user wants to run their code (via `rel run`), the `rel.js` file reads the `rel.json` in the `current working directory` (the directory where the run command is being executed). It then finds the `main` entry, and sends the file name to the `interp` function in `interp.js`. The file is then read, and the lines are sent to an array. The lines are then looped through, where each line is evaluated. Depending on what each line says, a function would be ran. For example if the line says `using <Logger>`, then the `modules.js` file would find the file assosciated, and require it, importing all the functions.
 
 ### Throwing your own errors
-Rel has a custom system when it comes to throwing errors. In the `errors.js` file, there are many functions, like `throwTypeError`, `throwUndefined`, and more. 
+Rel has a custom system when it comes to throwing errors. In the `errors.js` file, there are many functions, like `throwTypeError`, `throwUndefined`, and more. If none of the provided error messages suite what you are trying to say, you may either:
+
+**Add your own function to errors file**
+This is the recommended method if you feel that this error can be used in many situations, and not just a specific problem.
+
+**Adding a console.log that follows the error structure**
+This is reccomended if you are making an error for just one specific situation. Make sure to follow the rel error structure.
+
+
 
 ### Adding your own code
