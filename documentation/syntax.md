@@ -61,3 +61,5 @@ Semicolons are no longer not allowed in rel. *(Apr. 2, 2023)*
 You may choose to use a semicolon, but it is optional.
 
 If you are using a version before said date, semicolons will be required, and a syntax error will be thrown.
+
+[next](https://github.com/ghwosty/rel/blob/main/documentation/variables.md)

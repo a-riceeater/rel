@@ -1,20 +1,25 @@
 const yargs = require('yargs');
-const prompt = require("prompt-sync")({ sigint: false });
 const path = require('path');
-const cwd = process.cwd();
 const fs = require("fs")
-const pkgFetch = require('pkg-fetch');
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-const errors = require("./errors")
+
+const version = "1.0.0"
+
+/*
+import yargs from 'yargs'
+import path from 'path'
+import XMLHttpRequest  from 'xmlhttprequest';
+import fetch from 'node-fetch'*/
 
 const updateLog = (message) => {
-    process.stdout.clearLine(); // Clear the current console line
-    process.stdout.cursorTo(0); // Move the cursor to the beginning of the line
-    process.stdout.write(message); // Write the new message
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(message);
 }
 
+console.update = updateLog;
+
 (async () => {
-    // Create command-line arguments
     const argv = yargs
         .argv;
 
@@ -30,22 +35,26 @@ rpm help                display this command
 
     // Install command
     if (args[0] == "install" || args[0] == "i") {
-        // Make a request to the server
-        const xhr = new XMLHttpRequest();
-        // xhr.open('GET', 'https://server-rel.darthvader1925.repl.co/current-version', true);
 
         let length, total = 0;
         const start = new Date().getTime();
 
-        let rpmB = `${errors.BgYellow} RPM ${errors.Reset}`
+        let rpmB = `\x1b[43m\x1b[30m RPM \x1b[0m`
+        console.log(rpmB, "rel package manager v" + version);
 
-        fetch("http://localhost:80/module-length/" + args[1])
-            .then((d) => d.text())
-            .then((d) => {
-                total = d;
+        const oxhr = new XMLHttpRequest();
+
+        oxhr.open('GET', "http://localhost:80/module-length/" + args[1], true)
+
+        oxhr.onreadystatechange = () => {
+            if (oxhr.readyState == 4) {
+                if (oxhr.responseText == "Not Found") return console.log(`\n\x1b[41m\x1b[37m ERR! \x1b[0m`, `Error: 404 Not Found: Module "${args[1]}" could not be located.`)            
+
+                total = parseInt(oxhr.responseText);
+
+                const xhr = new XMLHttpRequest();
 
                 xhr.open('GET', 'http://localhost:80/modules/' + args[1], true);
-                console.log(rpmB, "Request sent...")
 
                 xhr.onreadystatechange = () => {
                     if (xhr.readyState === 3) {
@@ -56,15 +65,23 @@ rpm help                display this command
                         if (args[2] == "write") console.log(responseData, "\n", "________________________________________________________________________________________________________________________")
 
                         else {
-                            const percentage = (length / total) * 100
-                            updateLog(rpmB + " Downloading... " + percentage.toFixed(2) + `% [${"#".repeat(length)}]`)
+                            const percentage = (length / total) * 100;
+
+                            console.update(rpmB + " Downloading... " + percentage.toFixed(2) + `% [${"#".repeat(length)}${"-".repeat(total - length)}]`)
                         }
                     } else if (xhr.readyState === 4) {
-                        const responseData = xhr.responseText;
+                        console.update(rpmB + " Downloading... " + `100% [${"#".repeat(length)}]`)
+                        let location = path.join("C:\\Program Files\\rel", "./rel_modules/" + args[1] + ".js");
 
-                        fs.writeFile(path.join("C:\\Program Files\\rel", "./rel_modules/" + args[1] + ".js"), responseData, (err) => {
-                            if (err) throw err;
+                        if (xhr.responseText == "Not Found") return;
 
+                        fs.writeFile(location, xhr.responseText, (err) => {
+                            if (err) {
+                                console.log("\n")
+                                console.log(`\x1b[41m\x1b[37m ERR! \x1b[0m`, `Error: EPERM: Permission denied, open ${location}`)
+                                console.log(`\x1b[41m\x1b[37m ERR! \x1b[0m`, "Make sure to spawn command instance as administrator.")
+                                return
+                            }
 
                             const timeTaken = new Date().getTime() - start;
 
@@ -75,6 +92,9 @@ rpm help                display this command
                 };
 
                 xhr.send()
-            })
+            }
+        }
+
+        oxhr.send()
     }
 })();

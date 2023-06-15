@@ -1,7 +1,7 @@
-using <logger>
+using <Logger>
 using <Timing>
 
 public main() {
-    #Timing.wait(1000)
+    Timing.wait(5000)
     Logger.println("Henwo")
 }(main)

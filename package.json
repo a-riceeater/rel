@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "rel.js",
+    "type": "commonjs",
     "scripts": {
         "build-rel": "npx pkg --targets node18-win-x64 rel.js",
         "build-rpm": "npx pkg --targets node18-win-x64 rpm.js",
@@ -15,6 +16,7 @@
         "electron": "^24.0.0",
         "express": "^4.18.2",
         "glob": "^9.2.1",
+        "node-fetch": "^3.3.1",
         "path": "^0.12.7",
         "pkg-fetch": "^3.4.2",
         "prompt-sync": "^4.2.0",

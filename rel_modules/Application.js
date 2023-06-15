@@ -1,3 +1,2 @@
 /*
-    The default application module
-*/
+    The default application module
