@@ -21,11 +21,11 @@ If you are trying to add/fix new rel interperter features, you must understand h
 Rel has a custom system when it comes to throwing errors. In the `errors.js` file, there are many functions, like `throwTypeError`, `throwUndefined`, and more. If none of the provided error messages suite what you are trying to say, you may either:
 
 **Add your own function to errors file**
+
 This is the recommended method if you feel that this error can be used in many situations, and not just a specific problem.
 
 **Adding a console.log that follows the error structure**
+
 This is reccomended if you are making an error for just one specific situation. Make sure to follow the rel error structure.
-
-
 
 ### Adding your own code
