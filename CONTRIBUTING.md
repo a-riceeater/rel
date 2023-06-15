@@ -1,13 +1,23 @@
 # Contributing to rel
 
-Hey there! If you would like to help contribute to rel, please read this guide.
+Hey there! If you would like to help contribute to rel, by adding new features or modules, please read this guide.
 *Be aware, rel does not use a tokenizer, parser, lexer, or other types of functions. Instead, rel parses the code line-by-line (strings) instead which can be very confusing to understand at first look!*
+
+Please make sure to read the guidelines below, before contributing.
 
 ## Cloning the source code
 
-To begin contributing to rel, clone the github repository onto your personal device. Whilst installing rel via [releases](https://github.com/a-riceeater/rel/releases) will install some source code (as modules may require some code), it does not include the interpreter file, which is essential to adding new features.
+To begin contributing to rel, clone the github repository onto your personal device. Whilst installing rel via [releases](https://github.com/a-riceeater/rel/releases) will install some source code (as modules may require importing code from those files), it does not include the interpreter file, which is essential to adding new features.
 
 ### Cloning Locations
 **If you would like to compile your version of rel into exe files, and/or run a rel project in different folders throughout your computer**, then it is reccomended to install rel in `C:/Program Files/rel`, and adding the folder to your `PATH`.
 
-Otherwise, if you are fine with using the `exampleProject` folder from the github repository, and running your rel project via `node ../rel run`, then your can just clone the folder anywhere on your device.
+Otherwise, if you are fine with using the `exampleProject` folder (or any other folder located in the same directory) from the github repository, and running your rel project via `node ../rel run`, then your can just clone the folder anywhere on your device.
+
+### Understanding how rel works (to add new features)
+If you are trying to add/fix new rel interperter features, you must understand how the rel code structure works. When the user wants to run their code (via `rel run`), the `rel.js` file reads the `rel.json` in the `current working directory` (the directory where the run command is being executed). It then finds the `main` entry, and sends the file name to the `interp` function in `interp.js`. The file is then read, and the lines are sent to an array. The lines are then looped through, where each line is evaluated. Depending on what each line says, a function would be ran. For example if the line says `using <Logger>`, then the `modules.js` file would find the file assosciated, and require it, importing all the functions.
+
+### Throwing your own errors
+Rel has a custom system when it comes to throwing errors. In the `errors.js` file, there are many functions, like `throwTypeError`, `throwUndefined`, and more. 
+
+### Adding your own code
