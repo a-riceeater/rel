@@ -14,7 +14,7 @@ To begin contributing to rel, clone the github repository onto your personal dev
 
 Otherwise, if you are fine with using the `exampleProject` folder (or any other folder located in the same directory) from the github repository, and running your rel project via `node ../rel run`, then your can just clone the folder anywhere on your device.
 
-### Understanding how rel works (to add new features)
+## Understanding how rel works (to add new features)
 If you are trying to add/fix new rel interperter features, you must understand how the rel code structure works. When the user wants to run their code (via `rel run`), the `rel.js` file reads the `rel.json` in the `current working directory` (the directory where the run command is being executed). It then finds the `main` entry, and sends the file name to the `interp` function in `interp.js`. The file is then read, and the lines are sent to an array. The lines are then looped through, where each line is evaluated. Depending on what each line says, a function would be ran. For example if the line says `using <Logger>`, then the `modules.js` file would find the file associated, and require it, importing all the functions.
 
 ### Throwing your own errors
@@ -29,3 +29,6 @@ This is the recommended method if you feel that this error can be used in many s
 This is reccomended if you are making an error for just one specific situation. Make sure to follow the rel error structure.
 
 ### Adding your own code
+Now that you understand how the file structure works, you may add your own custom interperter functions, or any other bug fixes.
+
+## Pull requests
