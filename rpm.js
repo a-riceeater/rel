@@ -15,10 +15,9 @@ const pkgFetch = require('pkg-fetch');
     if (!args[0]) return console.log(`
 rpm <command>\n
 Usage:\n
-rpm install         installs/updates all the modules in your projects
-rpm install <foo>   install a rel module
-rpm i <foo>         abbreviation for rpm install
-rpm help            display this command
+rpm install/i           installs/updates all the modules in your projects
+rpm install/i <foo>     install a rel module
+rpm help                display this command
 `)
 
     // Install command
