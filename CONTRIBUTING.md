@@ -32,3 +32,6 @@ This is reccomended if you are making an error for just one specific situation. 
 Now that you understand how the file structure works, you may add your own custom interperter functions, or any other bug fixes.
 
 ## Pull requests
+Once you believe that your addition or bug fixes are ready to be published, you may submit a pull request. Please make sure to fix all conflicts (if possible) before submitting.
+
+**Your code will be reviewed with the guidelines below, so if you want your code to be published, then make sure it follows the guidelines.**
