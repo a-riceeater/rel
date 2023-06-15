@@ -35,3 +35,6 @@ Now that you understand how the file structure works, you may add your own custo
 Once you believe that your addition or bug fixes are ready to be published, you may submit a pull request. Please make sure to fix all conflicts (if possible) before submitting.
 
 **Your code will be reviewed with the guidelines below, so if you want your code to be published, then make sure it follows the guidelines.**
+
+## License
+All the code, documentation, and website is licensed under the [MIT License](https://github.com/a-riceeater/rel/blob/main/LICENSE).
