@@ -46,9 +46,15 @@ rpm help                display this command
 
         oxhr.open('GET', "https://server-rel.darthvader1925.repl.co/module-length/" + args[1], true)
 
+        oxhr.onerror = () => {
+            console.log("\n")
+            console.log(`\x1b[41m\x1b[37m ERR! \x1b[0m`, `Error: Failed to fetch: Failed to retrieve module ${args[1]} from server.`)
+            return
+        };
+
         oxhr.onreadystatechange = () => {
             if (oxhr.readyState == 4) {
-                if (oxhr.responseText == "Not Found") return console.log(`\n\x1b[41m\x1b[37m ERR! \x1b[0m`, `Error: 404 Not Found: Module "${args[1]}" could not be located.`)            
+                if (oxhr.responseText == "Not Found") return console.log(`\n\x1b[41m\x1b[37m ERR! \x1b[0m`, `Error: 404 Not Found: Module "${args[1]}" could not be located.`)
 
                 total = parseInt(oxhr.responseText);
 
@@ -70,10 +76,10 @@ rpm help                display this command
                             console.update(rpmB + " Downloading... " + percentage.toFixed(2) + `% [${"#".repeat(length)}${"-".repeat(total - length)}]`)
                         }
                     } else if (xhr.readyState === 4) {
-                        console.update(rpmB + " Downloading... " + `100% [${"#".repeat(length)}]`)
                         let location = path.join("C:\\Program Files\\rel", "./rel_modules/" + args[1] + ".js");
 
                         if (xhr.responseText == "Not Found") return;
+                        if (xhr.status == 200) console.update(rpmB + " Downloading... " + `100% [${"#".repeat(length)}]`)
 
                         fs.writeFile(location, xhr.responseText, (err) => {
                             if (err) {
