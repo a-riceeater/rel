@@ -12,7 +12,7 @@ const pkgFetch = require('pkg-fetch');
 
     const args = argv._;
 
-    if (!args[0]) return console.log(`
+    if (!args[0] || args[1].toString().toLowerCase() == "help") return console.log(`
 rpm <command>\n
 Usage:\n
 rpm install/i           installs/updates all the modules in your projects
