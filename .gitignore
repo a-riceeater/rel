@@ -4,3 +4,6 @@ installer/node_modules/
 exe-backups
 rel.exe
 rpm.exe
+installer/rel.zip
+installer/base64.js
+installer/base64.txt
