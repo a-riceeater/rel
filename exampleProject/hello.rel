@@ -5,6 +5,6 @@ public hello() {
     welcome(name="asd", a="a")
 
     void welcome() {
-        Logger.println("Hello " + Params.a);
+        Logger.println(Params.a);
     }(welcome)
 }(hello)
