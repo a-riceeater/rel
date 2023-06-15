@@ -1,8 +1,0 @@
-using <Logger>
-using <EServer>
-
-public main() {
-    //EServer.createServer();
-    Logger.println()
-    //EServer.listen(3000)
-}(main)

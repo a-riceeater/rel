@@ -1,8 +1,6 @@
 {
-    "name": "my cool project",
-    "version": "1.0.0",
-    "main": "main.rel",
-    "author": "ghwosty",
-    "showExit": false,
-    "showJson": false
+    "main": "hello.rel",
+    "version": "1",
+    "author": "elijah",
+    "showExit": false
 }
