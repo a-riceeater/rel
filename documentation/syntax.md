@@ -3,9 +3,9 @@
 The syntax for rel is based on `c#` and `java`.
 However, you do not have to define data types.
 
-## file base
+## file structure
 
-The base for each `.rel` program begins like this:
+The structure for each `.rel` program begins like this:
 ```
 using <Application>
 
