@@ -81,7 +81,8 @@ async function handleFunction(line, fline, fname, funcParams, executingFunction)
             }
         }
     } else {
-        if (isVariable(line.split("(")[1].replace(")", ""))) {
+        let a = line.split("(")[1].replace(")", "");
+        if (a.toString().trim() && isVariable(a)) {
             modules.ms[obj][method](variables.getVariable(line.split("(")[1].replace(")", "")))
         } else {
             if (isNumeric(line.split("(")[1].replace(")", ""))) modules.ms[obj][method](line.split("(")[1].replace(")", ""))

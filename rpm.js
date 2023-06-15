@@ -1,3 +1,5 @@
+// Rel Package Manager
+
 const yargs = require('yargs');
 const path = require('path');
 const fs = require("fs")
@@ -76,7 +78,7 @@ rpm help                display this command
                             console.update(rpmB + " Downloading... " + percentage.toFixed(2) + `% [${"#".repeat(length)}${"-".repeat(total - length)}]`)
                         }
                     } else if (xhr.readyState === 4) {
-                        let location = path.join("C:\\Program Files\\rel", "./rel_modules/" + args[1] + ".js");
+                        let location = path.join(__dirname, "rel_modules", args[1] + ".js")//path.join("C:\\Program Files\\rel", "./rel_modules/" + args[1] + ".js");
 
                         if (xhr.responseText == "Not Found") return;
                         if (xhr.status == 200) console.update(rpmB + " Downloading... " + `100% [${"#".repeat(length)}]`)

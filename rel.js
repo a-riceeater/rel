@@ -1,3 +1,5 @@
+// Rel Main Command
+
 const yargs = require('yargs');
 const prompt = require("prompt-sync")({ sigint: false });
 const path = require('path');

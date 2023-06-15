@@ -53,6 +53,7 @@ async function putVariable(name, value, fname, fline) {
 }
 
 function getVariable(name) {
+    console.log("getting variable", new Error)
     if (variables[name] == null) errors.throwUndefined(name)
     return variables[name];
 }
