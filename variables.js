@@ -4,6 +4,7 @@ const modules = require("./modules")
 const errors = require("./errors")
 const Reset = "\x1b[0m"
 const FgRed = "\x1b[31m"
+const interp = require("./interp")
 
 function isVariable(d) {
     if (isNumeric(d)) return false;
@@ -52,8 +53,8 @@ async function putVariable(name, value, fname, fline) {
     }
 }
 
-function getVariable(name) {
-    console.log("getting variable", new Error)
+function getVariable(name, funcParams, fname) {
+    //if (name.startsWith("Params.")) return funcParams[fname][name.split("Params.")[1]]
     if (variables[name] == null) errors.throwUndefined(name)
     return variables[name];
 }

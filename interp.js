@@ -186,15 +186,20 @@ async function interp(file) {
                 await variables.putVariable(line.split(" ")[1], line.split("=")[1].trim(), file, i);
             }
 
+            // Calling dot function
             else if (line.i(".")) await manager.handleFunction(line, i, file, funcParams, executingFunction);
 
+            // Calling void
             else if (line.i("(") && line.endsWith(")") && !line.i("}")) {
                 if (executingFunction != line.substring(0, line.indexOf("(")).trim()) {
-                    if (!checkVoid(line.substring(0, line.indexOf("(")).trim().trim(), flines, i)) errors.throwIFNotFound(line.substring(0, line.indexOf("(")).trim().trim())
-                    executingFunction = line.substring(0, line.indexOf("(")).trim();
+
+                    // if function does not exist, throw error
+                    if (!checkVoid(line.substring(0, line.indexOf("(")).trim(), flines, i)) errors.throwIFNotFound(line.substring(0, line.indexOf("(")).trim().trim())
+                    executingFunction = line.substring(0, line.indexOf("(")).trim(); // sets executing function to the called one
                     if (executingFunction == "") errors.throwTypeError("()", i, file)
 
-                    const prs = (line.split("(")[1].replace(")", "")).split(",")
+                    let vls = line.split("(")[1].replace(")", "");
+                    const prs = vls.split(",").length == 1 ? [vls] : vls.split(",")
                     if (!funcParams[executingFunction]) funcParams[executingFunction] = {};
 
                     for (let i = 0; i < prs.length; i++) {

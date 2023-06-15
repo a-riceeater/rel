@@ -1,3 +1,4 @@
+const e = require("express");
 const modules = require("./modules")
 const FgRed = "\x1b[31m"
 const Reset = "\x1b[0m"
@@ -50,6 +51,8 @@ async function handleFunction(line, fline, fname, funcParams, executingFunction)
                     result += param;
                     
                 } else {
+                    if (part.startsWith("Params.")) return result.push(part.split("Params.")[1])
+
                     var a = await variables.getVariable(part);
                     a.substring(1, a.length - 1)
                     result += a;
@@ -69,7 +72,10 @@ async function handleFunction(line, fline, fname, funcParams, executingFunction)
         for (let i = 0; i < parts.length; i++) {
             const part = parts[i].trim();
             if (!part.startsWith("\"") && !part.endsWith("\"")) {
-                var a = await variables.getVariable(part);
+                console.log(part)
+                if (part.startsWith("Params.")) return result.push(part.split("Params.")[1])
+
+                var a = await variables.getVariable(part, funcParams);
                 a.substring(1, a.length - 1)
                 result.push(a)
             } else {
@@ -83,7 +89,12 @@ async function handleFunction(line, fline, fname, funcParams, executingFunction)
     } else {
         let a = line.split("(")[1].replace(")", "");
         if (a.toString().trim() && isVariable(a)) {
-            modules.ms[obj][method](variables.getVariable(line.split("(")[1].replace(")", "")))
+            let b;
+
+            if (a.startsWith("Params.")) b = funcParams[executingFunction][a.split("Params.")[1]]
+            else b = variables.getVariable(line.split("(")[1].replace(")", ""));
+
+            modules.ms[obj][method](isVariable(b) ? variables.getVariable(b) : b.slice(1, b.length - 1), funcParams, executingFunction)
         } else {
             if (isNumeric(line.split("(")[1].replace(")", ""))) modules.ms[obj][method](line.split("(")[1].replace(")", ""))
             else modules.ms[obj][method](line.split("(")[1].replace(")", "").substring(1, line.split("(")[1].replace(")", "").length - 1))

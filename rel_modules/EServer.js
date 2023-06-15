@@ -20,7 +20,7 @@ function routeFile(u, f) {
 
     myApp.get(u, (req, res) => {
         console.log("Routed " + u + " to " + f)
-        res.sendFile(path.join(__dirname, `../../` + f));
+        res.sendFile(path.join(process.cwd(), f));
     })
 }
 
