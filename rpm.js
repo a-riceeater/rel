@@ -44,7 +44,7 @@ rpm help                display this command
 
         const oxhr = new XMLHttpRequest();
 
-        oxhr.open('GET', "http://localhost:80/module-length/" + args[1], true)
+        oxhr.open('GET', "https://server-rel.darthvader1925.repl.co/module-length/" + args[1], true)
 
         oxhr.onreadystatechange = () => {
             if (oxhr.readyState == 4) {
@@ -54,7 +54,7 @@ rpm help                display this command
 
                 const xhr = new XMLHttpRequest();
 
-                xhr.open('GET', 'http://localhost:80/modules/' + args[1], true);
+                xhr.open('GET', 'https://server-rel.darthvader1925.repl.co/modules/' + args[1], true);
 
                 xhr.onreadystatechange = () => {
                     if (xhr.readyState === 3) {
