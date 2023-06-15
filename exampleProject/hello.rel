@@ -1,10 +1,10 @@
 using <Logger>
 
 public hello() {
-    define name = Logger.inputRead("Name: ")
-    welcome(,name=name)
+    //define name = Logger.inputRead("Name: ")
+    welcome(name="asd", a="a")
 
     void welcome() {
-        Logger.println("Hello " + Params.name);
+        Logger.println("Hello " + Params.a);
     }(welcome)
 }(hello)
