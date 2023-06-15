@@ -63,7 +63,7 @@ function throwModuleNotFound(mname, line, filename) {
 
 function throwModuleNotLocated(mname, line, file) {
     console.log(FgRed + "ENOENT: Program exited with exit status 0:");
-    console.log("   " + filename + ":" + line)
+    console.log("   " + file + ":" + line)
     console.log("   Module", mname, "could not be located.");
     console.log("   At: ");
     console.log("   ", path.join(cwd, "../" + file) + ":" + line, Reset);
@@ -117,4 +117,4 @@ function hasError() {
     return error;
 }
 
-module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax, throwVarExists, throwUndefined, throwIFNotFound, throwIllegalUsing, throwModuleNotLocated }
+module.exports = { throwTypeError, hasError, throwModuleNotFound, throwMainNotFound, throwUED, throwSyntax, throwVarExists, throwUndefined, throwIFNotFound, throwIllegalUsing, throwModuleNotLocated, BgYellow, Reset }

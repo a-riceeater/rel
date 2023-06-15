@@ -27,7 +27,7 @@ const pkgFetch = require('pkg-fetch');
                 if (a == ".exit") process.exit();
                 eval(a);
             } catch (err) {
-                console.error(err);
+                console.error(err.toString().split("\n")[0]);
             } finally {
                 ask();
             }

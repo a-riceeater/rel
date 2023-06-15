@@ -3,3 +3,4 @@ installer/dist
 installer/node_modules/
 exe-backups
 rel.exe
+rpm.exe

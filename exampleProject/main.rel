@@ -1,4 +1,4 @@
-using <Logger>
+using <logger>
 using <Timing>
 
 public main() {

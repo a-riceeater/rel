@@ -4,7 +4,9 @@
     "description": "",
     "main": "rel.js",
     "scripts": {
-        "compile": "npx pkg --targets node18-win-x64 rel.js"
+        "build-rel": "npx pkg --targets node18-win-x64 rel.js",
+        "build-rpm": "npx pkg --targets node18-win-x64 rpm.js",
+        "build-all": "npx pkg --targets node18-win-x64 rel.js && npx pkg --targets node18-win-x64 rpm.js"
     },
     "keywords": [],
     "author": "",
@@ -18,6 +20,7 @@
         "prompt-sync": "^4.2.0",
         "serve-favicon": "^2.5.0",
         "shelljs": "^0.8.5",
+        "xmlhttprequest": "^1.8.0",
         "yargs": "^17.7.1"
     },
     "bin": {

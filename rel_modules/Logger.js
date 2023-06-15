@@ -17,5 +17,3 @@ function inputRead(message) {
     if (!p) process.exit();
     return p;
 }
-
-module.exports = { println, inputRead }
