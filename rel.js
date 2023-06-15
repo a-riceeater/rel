@@ -15,7 +15,7 @@ const pkgFetch = require('pkg-fetch');
                 type: 'string'
             }
         })
-        .argv;  
+        .argv;
 
 
     if (!argv._[0]) {
