@@ -12,7 +12,7 @@ function adduse(mname, line, file) {
     used.push(mname);
 
     let location = path.join("C:\\Program Files\\rel", "./rel_modules/" + mname + (mname.endsWith(".js") ? "" : ".js"));
-    if (!fs.existsSync(location)) location = path.join(__dirname, "rel_modules", mname + ".js") //return errors.throwModuleNotLocated(mname, line, file);
+    if (!fs.existsSync(location))  return errors.throwModuleNotLocated(mname, line, file); //location = path.join(__dirname, "rel_modules", mname + ".js")
 
     ms[mname] = require(location)
     return true;

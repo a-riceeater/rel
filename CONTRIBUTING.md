@@ -41,3 +41,15 @@ All the code, documentation, and website is licensed under the [MIT License](htt
 
 ## Guidelines
 **When contributing to rel, please make sure to follow these community guidelines!**
+
+1. Follow the rel code structure
+
+Make sure that the line interper code stays in the `interp.js` file, etc.
+
+2. Do not submit "prank" code
+
+Please do not waste time sending in code that has no purpose.
+
+3. Test your code!
+
+Please make sure that your code works before submitting a pull request.
