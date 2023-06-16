@@ -62,5 +62,8 @@ public main () {
 }(main);
 ```
 
+# Contributing
+View [CONTRIBUTING.md](https://github.com/a-riceeater/rel/blob/main/CONTRIBUTING.md)
+
 # Documentation
 [![view - documentation](https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge)](https://github.com/ghwosty/rel/blob/main/documentation/quickstart.md "View Documentation")
