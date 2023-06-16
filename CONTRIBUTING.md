@@ -53,3 +53,4 @@ Please do not waste time sending in code that has no purpose.
 3. Test your code!
 
 Please make sure that your code works before submitting a pull request.
+It is also recommended that you compile the code into an executable, to make sure that it works in production.
