@@ -1,6 +1,7 @@
 # Contributing to rel
 
 Hey there! If you would like to help contribute to rel, by adding new features or modules, please read this guide.
+
 *Be aware, rel does not use a tokenizer, parser, lexer, or other types of functions. Instead, rel parses the code line-by-line (strings) instead which can be very confusing to understand at first look!*
 
 Please make sure to read the guidelines below, before contributing.
