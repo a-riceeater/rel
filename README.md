@@ -21,7 +21,7 @@ Syntax based on java and c#.
 2. Add your files in exampleProject (or any other folder nearby)
 3. Add your main to `rel.json`
 4. Begin to code
-5. Run by compiling rel (`npm run build-all`), or `node ../rel run`
+5. Run by compiling rel (`npm run build-all`) then using `../rel run` (or just `rel run` if added to PATH), or `node ../rel run`
 
 OR
 
