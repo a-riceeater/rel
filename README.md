@@ -53,6 +53,7 @@ Example `rel.json`:
 - Functions with returning
 - Frame module
 - Math Evaluation
+- Multi-line comments
 
 
 ## Example Code
