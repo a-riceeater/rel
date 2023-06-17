@@ -9,7 +9,7 @@ A funky "programming" language made in Node.Js
 ![Platform](https://img.shields.io/badge/platform-windows-lightgrey)
 
 ## Download
-[![Download Rel](https://img.shields.io/badge/DOWNLOAD%20REL%20INSTALLER-v1.0.2-blue?style=for-the-badge)](https://github.com/ghwosty/rel/releases/latest)
+[![Download Rel](https://img.shields.io/badge/DOWNLOAD%20REL%20INSTALLER-v1.1.0-blue?style=for-the-badge)](https://github.com/ghwosty/rel/releases/latest)
 
 ## Syntax
 
