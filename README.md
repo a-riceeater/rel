@@ -15,6 +15,10 @@ A funky "programming" language made in Node.Js
 
 Syntax based on java and c#.
 
+## Platforms
+
+Rel is only available on Windows, but may be added to other platforms in the future.
+
 ## Usage/Instalation
 
 1. Clone the github repository.
