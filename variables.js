@@ -1,10 +1,8 @@
 const variables = {};
-const manager = require("./managers")
 const modules = require("./modules")
 const errors = require("./errors")
 const Reset = "\x1b[0m"
 const FgRed = "\x1b[31m"
-const interp = require("./interp")
 
 function isVariable(d) {
     if (isNumeric(d)) return false;

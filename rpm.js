@@ -32,8 +32,7 @@ rpm <command>\n
 Usage:\n
 rpm install/i           installs/updates all the modules in your projects
 rpm install/i <foo>     install a rel module
-rpm help                display this command
-`)
+rpm help                display this command`)
 
     // Install command
     if (args[0] == "install" || args[0] == "i") {
@@ -104,5 +103,13 @@ rpm help                display this command
         }
 
         oxhr.send()
+    } else {
+        console.log(`
+rpm <command>\n
+Usage:\n
+rpm install/i           installs/updates all the modules in your projects
+rpm install/i <foo>     install a rel module
+rpm help                display this command
+`)
     }
 })();
